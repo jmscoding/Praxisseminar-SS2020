@@ -1,0 +1,7 @@
+nose
+rednose
+cryptography
+pyasn1
+pymodbus
+cpppo
+twisted
