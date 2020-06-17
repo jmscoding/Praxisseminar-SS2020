@@ -485,3 +485,55 @@ class RTU(Device):
             time.sleep(sleep)
 
             sec += 1
+
+
+class CB(Device):
+	# IN BEARBEITUNG
+
+    """Conveyor belt class.
+
+    Conveyor belt provides:
+        - state APIs: e.g., set a velocity level indicator
+    """
+
+    def __init__(
+            self, name, protocol, state,
+            section, level):
+        """
+        :param str name: device name
+        :param dict protocol: used to set up the network layer API
+        :param dict state: used to set up the physical layer API
+        :param float section: cross section of the tank in m^2
+        :param float level: current level in m
+        """
+
+        self.section = section
+        self.level = level
+        super(Tank, self).__init__(name, protocol, state)
+
+    def _start(self):
+
+        self.pre_loop()
+        self.main_loop()
+
+    def pre_loop(self, sleep=0.5):
+        """CB pre_loop.
+
+        :param float sleep: second[s] to sleep before returning
+        """
+
+        print "TODO CB pre_loop: please override me"
+
+    def main_loop(self, sleep=0.5):
+        """CB main loop.
+
+        :param float sleep: second[s] to sleep after each iteration
+        """
+
+        sec = 0
+        while(sec < 1):
+
+            print "TODO Tank main_loop: please override me"
+            time.sleep(sleep)
+
+            sec += 1
