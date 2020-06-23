@@ -10,9 +10,9 @@ from mininet.topo import Topo
 from utils import IP, MAC, NETMASK
 
 
-class CBTopo(Topo):
+class CbTopo(Topo):
 
-    """Fließband 2 plcs + 1 Host mit HMI + 1 Angreifer + 1 Switch"""
+    """Fließband 1 plc + 1 Host mit HMI + 1 Angreifer + 1 Switch"""
 
     def build(self):
 
@@ -23,12 +23,6 @@ class CBTopo(Topo):
             ip=IP['plc1'] + NETMASK,
             mac=MAC['plc1'])
         self.addLink(plc1, switch)
-
-        plc2 = self.addHost(
-            'plc2',
-            ip=IP['plc2'] + NETMASK,
-            mac=MAC['plc2'])
-        self.addLink(plc2, switch)
 
         host1 = self.addHost(
             'host1',

@@ -27,6 +27,19 @@ UPLOADER=twine
 
 .PHONY: tests tests-travis clean
 
+
+#Praxisseminar {{{1
+
+praxisseminar:
+	cd examples/toy; $(PYTHON) $(PYTHON_OPTS) run.py; cd ../..
+
+praxisseminar-init:
+	cd examples/toy; $(PYTHON) $(PYTHON_OPTS) init.py; cd ../..
+
+
+# # }}}
+
+
 # TOY {{{1
 
 # toy:
