@@ -31,10 +31,10 @@ UPLOADER=twine
 #Praxisseminar {{{1
 
 praxisseminar:
-	cd examples/toy; $(PYTHON) $(PYTHON_OPTS) run.py; cd ../..
+	cd Praxisseminar; $(PYTHON) $(PYTHON_OPTS) run.py; cd ..
 
 praxisseminar-init:
-	cd examples/toy; $(PYTHON) $(PYTHON_OPTS) init.py; cd ../..
+	cd Praxisseminar; $(PYTHON) $(PYTHON_OPTS) init.py; cd ..
 
 
 # # }}}

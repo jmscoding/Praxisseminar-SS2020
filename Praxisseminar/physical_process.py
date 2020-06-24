@@ -1,4 +1,8 @@
 """
+IN BEARBEITUNG:
+- physischer Prozess im End Effekt nur 
+
+
 SWaT sub1 physical process
 RawWaterTank has an inflow pipe and outflow pipe, both are modeled according
 to the equation of continuity from the domain of hydraulics
