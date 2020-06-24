@@ -1,0 +1,30 @@
+% Encoding: utf-8
+
+@Article{Antonioli2015,
+  author      = {Daniele Antonioli and Nils Ole Tippenhauer},
+  title       = {MiniCPS: A toolkit for security research on CPS Networks},
+  date        = {2015-07-17},
+  eprint      = {1507.04860v1},
+  eprintclass = {cs.NI},
+  eprinttype  = {arXiv},
+  file        = {:http\://arxiv.org/pdf/1507.04860v1:PDF},
+  keywords    = {cs.NI, cs.CR},
+}
+
+@Article{Schlette2020,
+  author    = {Daniel Schlette and Fabian Böhm and Marco Caselli and Günther Pernul},
+  journal   = {International Journal of Information Security},
+  title     = {Measuring and visualizing cyber threat intelligence quality},
+  year      = {2020},
+  month     = {mar},
+  doi       = {10.1007/s10207-020-00490-y},
+  publisher = {Springer Science and Business Media {LLC}},
+}
+
+@Article{Holland2020,
+  author = {Holland},
+  title  = {Während Coronavirus-Pandemie: Cyberangriff legt tschechischesKrankenhaus lahm},
+  year   = {2020},
+  url    = {https://www.heise.de/-4683370},
+}
+
