@@ -1,0 +1,12 @@
+[FormatInfo]
+Type=TeXnicCenterProjectInformation
+Version=4
+
+[ProjectInfo]
+MainFile=VorlageAbschlussarbeit.tex
+UseBibTeX=1
+UseMakeIndex=1
+ActiveProfile=texify => PDFSumatra
+ProjectLanguage=
+ProjectDialect=
+
