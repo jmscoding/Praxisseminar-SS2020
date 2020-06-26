@@ -77,8 +77,7 @@ STATE = {
     'path': PATH
 }
 
-SCHEMA = 
-CREATE TABLE cb_table (
+SCHEMA = CREATE TABLE cb_table (
     name              TEXT NOT NULL,
     datatype          TEXT NOT NULL,
     value             TEXT,
