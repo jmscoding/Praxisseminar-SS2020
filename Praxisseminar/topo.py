@@ -1,8 +1,7 @@
-#!/usr/bin/python3
 """
 IN BEARBEITUNG
 
-Praxisseminar conveyor belt (short CB, Fließband) topology
+Praxisseminar conveyor belt (short CB, Fliessband) topology
 """
 
 from mininet.topo import Topo
@@ -12,7 +11,7 @@ from utils import IP, MAC, NETMASK
 
 class CbTopo(Topo):
 
-    """Fließband 1 plc + 1 Host mit HMI + 1 Angreifer + 1 Switch"""
+    """Fliessband 1 plc + 1 Host mit HMI + 1 Angreifer + 1 Switch"""
 
     def build(self):
 

@@ -1,5 +1,5 @@
 """
-toy init.py
+Praxisseminar init.py
 Run this script just once to create and init the sqlite table.
 """
 

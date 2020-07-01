@@ -1,13 +1,10 @@
 """
 IN BEARBEITUNG:
-- physischer Prozess im End Effekt nur 
+- physischer Prozess im End Effekt nur starten und beenden des Fliessbandes und Bestimmen der Geschwindigkeit des Motors
 
 
-SWaT sub1 physical process
-RawWaterTank has an inflow pipe and outflow pipe, both are modeled according
-to the equation of continuity from the domain of hydraulics
-(pressurized liquids) and a drain orefice modeled using the Bernoulli's
-principle (for the trajectories).
+Fliessband physical process
+
 """
 
 

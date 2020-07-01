@@ -11,6 +11,23 @@
 """
 
 from minicps.utils import build_debug_logger
+import logging
+
+#Eigenen Logger basteln der mir die Daten persistent speichert, sodass ich sie danach auslesen kann
+
+Praxisseminar_test_logger = logging.getLogger(__name__)
+Praxisseminar_test_logger.setLevel(logging.DEBUG)
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+formatter = logging.formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+ch.setFormatter(formatter)
+
+Praxisseminar_test_logger.addHandler(ch)
+
+# Ende des eigenen Loggers
 
 Praxisseminar_logger = build_debug_logger(
     name=__name__,
@@ -77,17 +94,18 @@ STATE = {
     'path': PATH
 }
 
-SCHEMA = CREATE TABLE cb_table (
-    name              TEXT NOT NULL,
-    datatype          TEXT NOT NULL,
-    value             TEXT,
-    pid               INTEGER NOT NULL,
-    PRIMARY KEY (name, pid)
-);
+SCHEMA = """
+	CREATE TABLE cb_table (
+		name              TEXT NOT NULL,
+		datatype          TEXT NOT NULL,
+		value             TEXT,
+		pid               INTEGER NOT NULL,
+		PRIMARY KEY (name, pid)
+);"""
 
 # Sensor + Actuator initialisierende Daten
 
-SCHEMA_INIT = 
+SCHEMA_INIT = """
     INSERT INTO cb_table VALUES ('SENSOR1',   'int', '0', 1);
     INSERT INTO cb_table VALUES ('ACTUATOR1', 'int', '1', 1);
-   
+"""   

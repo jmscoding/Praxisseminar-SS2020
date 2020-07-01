@@ -22,7 +22,7 @@ class PraxisseminarCPS(MiniCPS):
         self.net.start()
 
         # start devices
-        plc1 = self.net.get('plc1')
+        # plc1 = self.net.get('plc1')
         # plc1.cmd(sys.executable + ' plc1.py &')
 
         CLI(self.net)
