@@ -10,7 +10,8 @@
 	if ACTUATORX is 1 then is ON otherwise is OFF.
 """
 
-from minicps.utils import build_debug_logger
+from minicps.utils import *
+
 import logging
 
 #Eigenen Logger basteln der mir die Daten persistent speichert, sodass ich sie danach auslesen kann
@@ -18,14 +19,13 @@ import logging
 Praxisseminar_test_logger = logging.getLogger(__name__)
 Praxisseminar_test_logger.setLevel(logging.DEBUG)
 
-ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
+fh = logging.FileHandler('logs/file.log')
+fh.setLevel(logging.DEBUG)
 
 formatter = logging.formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
 
-ch.setFormatter(formatter)
-
-Praxisseminar_test_logger.addHandler(ch)
+Praxisseminar_test_logger.addHandler(fh)
 
 # Ende des eigenen Loggers
 
@@ -35,7 +35,7 @@ Praxisseminar_logger = build_debug_logger(
     rotating_files=2,
     lformat='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     ldir='logs/',
-    suffix='')
+    suffix='.log')
 
 
 # others
