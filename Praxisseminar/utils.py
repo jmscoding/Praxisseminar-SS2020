@@ -12,8 +12,6 @@
 
 from minicps.utils import *
 
-import logging
-
 #Eigenen Logger basteln der mir die Daten persistent speichert, sodass ich sie danach auslesen kann
 
 Praxisseminar_test_logger = logging.getLogger(__name__)
@@ -22,7 +20,7 @@ Praxisseminar_test_logger.setLevel(logging.DEBUG)
 fh = logging.FileHandler('logs/file.log')
 fh.setLevel(logging.DEBUG)
 
-formatter = logging.formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 fh.setFormatter(formatter)
 
 Praxisseminar_test_logger.addHandler(fh)
