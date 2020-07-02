@@ -36,11 +36,7 @@ class CbTopo(Topo):
             ip=IP['attacker'] + NETMASK,
             mac=MAC['attacker'])
         self.addLink(attacker, switch)
-<<<<<<< HEAD
-        Praxisseminar_test_logger.info('PLC1, Host1 und Attacker')
-=======
 	
 	Praxisseminar_test_logger.info('PLC1, Host1 und Attacker')
 		
->>>>>>> f97f6de0ab724c9aea26bfc84c27b324cfdfcce4
 
