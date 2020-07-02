@@ -35,29 +35,12 @@ Praxisseminar_logger = build_debug_logger(
     ldir='logs/',
     suffix='.log')
 
-
-# others
-PLC1_DATA = {
-    'SENSOR1': '0',
-    'ACTUATOR1': '1',  # 0 means OFF and 1 means ON
-}
-
-# protocol
-PLC1_MAC = '00:00:00:00:00:01'
-PLC1_TAGS = (
-    ('SENSOR1', 1, 'INT'),
-    ('ACTUATOR1', 1, 'INT'),  # 0 means OFF and 1 means ON
-)
-
-PLC1_ADDR = '10.0.0.1'
-PLC1_SERVER = {
-    'address': PLC1_ADDR,
-    'tags': PLC1_TAGS
-}
-PLC1_PROTOCOL = {
-    'name': 'enip',
-    'mode': 1,
-    'server': PLC1_SERVER
+# Control logic threshold
+MOTOR_VEL = { #Geschwindigkeitseinstellungen + Quelle Andi
+    'LV': 0.9,
+    'HV': 6.0,
+    'MIN': 0.0,
+    'MAX': 9.0
 }
 
 # topo {{{1
@@ -81,6 +64,30 @@ MAC = {
     'plc5': '00:00:00:00:00:0F',
     'host1': '00:00:00:00:00:0D',
     'attacker': 'AA:AA:AA:AA:AA:AA',
+}
+
+# others
+PLC1_DATA = {
+    'SENSOR1': '0',
+    'ACTUATOR1': '1',  # 0 means OFF and 1 means ON
+}
+
+# protocol
+PLC1_MAC = MAC['plc1']
+PLC1_TAGS = (
+    ('SENSOR', 1, 'INT'),
+    ('MOTOR', 1, 'INT'),  # 0 means OFF and 1 means ON
+)
+
+PLC1_ADDR = IP['plc1']
+PLC1_SERVER = {
+    'address': PLC1_ADDR,
+    'tags': PLC1_TAGS
+}
+PLC1_PROTOCOL = {
+    'name': 'enip',
+    'mode': 1,
+    'server': PLC1_SERVER
 }
 
 # state

@@ -17,61 +17,45 @@ import sys
 import time
 
 
-# SPHINX_SWAT_TUTORIAL TAGS(
-MV101 = ('MV101', 1)
-P101 = ('P101', 1)
-LIT101 = ('LIT101', 1)
-LIT301 = ('LIT301', 3)
-FIT101 = ('FIT101', 1)
-FIT201 = ('FIT201', 2)
-# SPHINX_SWAT_TUTORIAL TAGS)
+# Praxisseminar TAGS
+# Beispiel: MV101 = ('MV101', 1)
+MOTOR = ('MOTOR', 1)
+SENSOR = ('SENSOR', 1)
+# Praxisseminar TAGS
 
 
-# TODO: implement orefice drain with Bernoulli/Torricelli formula
+
+
+
+# TODO:
 class ConveyorBelt(CB):
 
     def pre_loop(self):
 
-        # SPHINX_SWAT_TUTORIAL STATE INIT(
-        self.set(MV101, 1)
-        self.set(P101, 0)
-        self.level = self.set(LIT101, 0.800)
-        # SPHINX_SWAT_TUTORIAL STATE INIT)
+        # Praxisseminar STATE INIT(
 
-        # test underflow
-        # self.set(MV101, 0)
-        # self.set(P101, 1)
-        # self.level = self.set(LIT101, 0.500)
+        # Standardmäßig ist der Motor des Foerderbandes an
+        self.set(MOTOR, 1)
+        # Praxisseminar STATE INIT)
+
 
     def main_loop(self):
 
         count = 0
-        while(count <= PP_SAMPLES):
+        while(count == 1000):
 
-            new_level = self.level
+            # überprüfe ob Motor an ist
+            # wenn ja dann setze standarmäßig Anfangsgeschwindigkeit
 
-            # compute water volume
-            water_volume = self.section * new_level
+            motor = self.get(MOTOR)
+            if int(MOTOR) == 1:
 
-            # inflows volumes
-            mv101 = self.get(MV101)
-            if int(mv101) == 1:
                 self.set(FIT101, PUMP_FLOWRATE_IN)
                 inflow = PUMP_FLOWRATE_IN * PP_PERIOD_HOURS
                 # print "DEBUG RawWaterTank inflow: ", inflow
                 water_volume += inflow
             else:
-                self.set(FIT101, 0.00)
-
-            # outflows volumes
-            p101 = self.get(P101)
-            if int(p101) == 1:
-                self.set(FIT201, PUMP_FLOWRATE_OUT)
-                outflow = PUMP_FLOWRATE_OUT * PP_PERIOD_HOURS
-                # print "DEBUG RawWaterTank outflow: ", outflow
-                water_volume -= outflow
-            else:
-                self.set(FIT201, 0.00)
+                self.set(SENSOR, 0.00)
 
             # compute new water_level
             new_level = water_volume / self.section
