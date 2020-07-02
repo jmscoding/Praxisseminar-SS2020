@@ -46,8 +46,8 @@ class CbPLC1(PLC):
             # print 'DEBUG: toy plc1 receive SENSOR3_1: ', rec_s31
             get_s11 = self.get(SENSOR1_1)
             print 'DEBUG: Praxisseminar plc1 get SENSOR1_1: ', get_s11
-			#ersten eigenen Logger eingefügt - wirft komische Fehlermeldung 
-			Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR1_1: ' + str(get_s11)) 
+            #ersten eigenen Logger eingefügt - wirft komische Fehlermeldung
+            Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR1_1: ' + str(get_s11))
 
             time.sleep(1)
             count += 1
