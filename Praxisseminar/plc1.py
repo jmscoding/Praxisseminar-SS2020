@@ -54,7 +54,7 @@ class CbPLC1(PLC):
 
             if count > END:
                 print 'DEBUG Praxisseminar plc1 shutdown'
-				Praxisseminar_test_logger.debug('PLC1 shutdown ')
+                Praxisseminar_test_logger.debug('PLC1 shutdown ')
                 break
 
 
