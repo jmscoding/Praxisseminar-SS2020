@@ -68,20 +68,19 @@ class Device(object):
 
         Device construction example:
 
-        >>> device = Device(
-        >>>     name='dev',
-        >>>     protocol={
-        >>>         'name': 'enip',
-        >>>         'mode': 1,
-        >>>         'server': {
-        >>>             'address': '10.0.0.1',
-        >>>             'tags': (('SENSOR1', 1), ('SENSOR2', 1)),
-        >>>             }
-        >>>     state={
-        >>>         'path': '/path/to/db.sqlite',
-        >>>         'name': 'table_name',
-        >>>     }
-        >>> )
+        device = Device(
+             name='dev',
+             protocol={
+                 'name': 'enip',
+                 'mode': 1,
+                 'server': {
+                     'address': '10.0.0.1',
+                    'tags': (('SENSOR1', 1), ('SENSOR2', 1)),
+             state={
+                 'path': '/path/to/db.sqlite',
+                'name': 'table_name',
+            }
+         )
 
         """
 
@@ -488,28 +487,26 @@ class RTU(Device):
 
 
 class CB(Device):
-	# IN BEARBEITUNG
+    # IN BEARBEITUNG
 
     """Conveyor belt class.
 
     Conveyor belt provides:
         - state APIs: e.g., set a velocity level indicator
     """
-
     def __init__(
             self, name, protocol, state,
-            section, level):
+            status, velocity):
         """
         :param str name: device name
         :param dict protocol: used to set up the network layer API
         :param dict state: used to set up the physical layer API
-        :param float section: cross section of the tank in m^2
-        :param float level: current level in m
+        :param int status: ist das Foerderband an oder aus
+        :param double velocity: welche Geschwindigkeit hat das Foerderband standardmaessig
         """
-
-        self.section = section
-        self.level = level
-        super(Tank, self).__init__(name, protocol, state)
+        self.status = status
+        self.velocity = velocity
+        super(CB, self).__init__(name, protocol, state)
 
     def _start(self):
 

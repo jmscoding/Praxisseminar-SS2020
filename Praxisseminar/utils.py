@@ -39,8 +39,14 @@ Praxisseminar_logger = build_debug_logger(
 MOTOR_VEL = { #Geschwindigkeitseinstellungen + Quelle Andi
     'LV': 0.9,
     'HV': 6.0,
+    'STD': 3.0,
     'MIN': 0.0,
     'MAX': 9.0
+}
+
+MOTOR_STA = { #Status des Motors ob er laeuft oder nicht
+    'ON': 1,
+    'OFF': 0
 }
 
 # topo {{{1
@@ -68,8 +74,8 @@ MAC = {
 
 # others
 PLC1_DATA = {
-    'SENSOR1': '0',
-    'ACTUATOR1': '1',  # 0 means OFF and 1 means ON
+    'SENSOR': '0',
+    'MOTOR': '0',  # 0 means OFF and 1 means ON
 }
 
 # protocol

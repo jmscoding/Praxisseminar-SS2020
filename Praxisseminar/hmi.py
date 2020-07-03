@@ -4,60 +4,54 @@ IN BEARBEITUNG
 Praxisseminar hmi.py
 """
 
-from minicps.devices import PLC
-from utils import PLC1_DATA, STATE
-from utils import PLC1_PROTOCOL, PLC1_ADDR
+from minicps.devices import HMI
 
-import time
-import os
+from utils import STATE, PLC1_DATA, PLC1_PROTOCOL
+
+
 import sys
+import time
 
 
-# constant tag addresses
-SENSOR1_1 = ('SENSOR1', 1)
-ACTUATOR1_1 = ('ACTUATOR1', 1)
+class PHMI(HMI):
 
+    """Praxisseminar HMI.
 
+    HMI provides:
+        - state APIs: e.g., get a water level indicator
+        - network APIs: e.g., monitors a PLC's tag
+    """
 
-# TODO: decide how to map what tuples into memory and disk
-class CbPLC1(PLC):
+    def _start(self):
 
-    def pre_loop(self, sleep=0.1):
-        print 'DEBUG: Praxisseminar plc1 enters pre_loop'
-        print
+        self.main_loop()
 
-        # sensor1 = self.set(SENSOR1_1, 2)
-        # print 'DEBUG: toy plc1 sensor1: ', self.get(SENSOR1_1)
-        # self.memory['SENSOR1'] = sensor1
-        self.send(SENSOR1_1, 2, PLC1_ADDR)
+    def _stop(self):
 
-        time.sleep(sleep)
+        if self.protocol['mode'] > 0:
+            self._protocol._server_subprocess.kill()
 
     def main_loop(self, sleep=0.5):
-        print 'DEBUG: Praxisseminar plc1 enters main_loop'
-        print
+        """HMI main loop.
 
-        count = 0
-        END = 6e6
-        while(True):
-            rec_s11 = self.receive(SENSOR1_1, PLC1_ADDR)
-            # print 'DEBUG: toy plc1 receive SENSOR3_1: ', rec_s31
-            get_s11 = self.get(SENSOR1_1)
-            print 'DEBUG: Praxisseminar plc1 get SENSOR1_1: ', get_s11
+        :param float sleep: second[s] to sleep after each iteration
+        """
 
-            time.sleep(1)
-            count += 1
+        sec = 0
+        while(sec < 1):
 
-            if count > END:
-                print 'DEBUG toy plc1 shutdown'
-                break
+            print "TODO HMI main_loop: please override me"
+            time.sleep(sleep)
+
+            sec += 1
+
 
 
 if __name__ == "__main__":
 
     # notice that memory init is different form disk init
-    plc1 = CbPLC1(
-        name='plc1',
+    phmi = PHMI(
+        name='phmi',
         state=STATE,
         protocol=PLC1_PROTOCOL,
         memory=PLC1_DATA,
