@@ -11,7 +11,7 @@ Fliessband physical process
 from minicps.devices import CB
 
 from utils import MOTOR_VEL, MOTOR_STA
-from utils import STATE
+from utils import STATE, PLC1_PROTOCOL
 
 import sys
 import time
