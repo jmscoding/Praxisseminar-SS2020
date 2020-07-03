@@ -11,10 +11,9 @@ import time
 import os
 import sys
 
-
 # constant tag addresses
-SENSOR1_1 = ('SENSOR', 1)
-ACTUATOR1_1 = ('MOTOR', 1)
+SENSOR_1 = ('SENSOR', 1)
+MOTOR_1 = ('MOTOR', 1)
 
 
 
@@ -33,6 +32,7 @@ class CbPLC1(PLC):
 		# Verbindung zwischen PLC1 und PLC2
         # self.send(SENSOR1_1, 2, PLC1_ADDR) 
 
+        Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + SENSOR_1)
         time.sleep(sleep)
 
     def main_loop(self, sleep=0.5):
@@ -44,10 +44,13 @@ class CbPLC1(PLC):
         while(True):
             # rec_s11 = self.receive(SENSOR1_1, PLC1_ADDR)
             # print 'DEBUG: toy plc1 receive SENSOR3_1: ', rec_s31
-            get_s11 = self.get(SENSOR1_1)
+
+
+
+            get_s11 = self.get(SENSOR_1)
             print 'DEBUG: Praxisseminar plc1 get SENSOR1_1: ', get_s11
             # ersten eigenen Logger eingefuegt - wirft komische Fehlermeldung
-            Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR1_1: ' + str(get_s11))
+            Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + str(get_s11))
 
             time.sleep(1)
             count += 1
@@ -67,4 +70,3 @@ if __name__ == "__main__":
         protocol=PLC1_PROTOCOL,
         memory=PLC1_DATA,
         disk=PLC1_DATA)
-		

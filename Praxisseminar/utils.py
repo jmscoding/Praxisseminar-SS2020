@@ -82,7 +82,7 @@ PLC1_DATA = {
 PLC1_MAC = MAC['plc1']
 PLC1_TAGS = (
     ('SENSOR', 1, 'INT'),
-    ('MOTOR', 1, 'INT'),  # 0 means OFF and 1 means ON
+    ('MOTOR', 1, 'INT'),
 )
 
 PLC1_ADDR = IP['plc1']
@@ -114,9 +114,9 @@ SCHEMA = """
 		PRIMARY KEY (name, pid)
 );"""
 
-# Sensor + Actuator initialisierende Daten
+# Sensor + Actuator initialisieren der Daten
 
 SCHEMA_INIT = """
-    INSERT INTO cb_table VALUES ('SENSOR1',   'int', '0', 1);
-    INSERT INTO cb_table VALUES ('ACTUATOR1', 'int', '1', 1);
+    INSERT INTO cb_table VALUES ('SENSOR',   'int', '0', 1);
+    INSERT INTO cb_table VALUES ('MOTOR', 'int', '1', 1);
 """   
