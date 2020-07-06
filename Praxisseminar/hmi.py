@@ -14,7 +14,7 @@ import get_ip
 import time
 
 
-HMI_ADDR = get_ip()
+HMI_ADDR = get_ip.get_ip()
 
 # constant tag addresses
 SENSOR_1 = ('SENSOR', 1)
@@ -37,7 +37,7 @@ class PHMI(HMI):
         :param float sleep: second[s] to sleep after each iteration
         """
 
-        # die HMI Addresse zurückgeben
+        # die HMI Addresse zurueckgeben
         print 'DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR
         Praxisseminar_test_logger.debug('DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR)
 
@@ -60,7 +60,7 @@ class PHMI(HMI):
             # Status abfragen (Ein
             if eingabe == '1':
                 motor = self.receive(MOTOR_1, PLC1_ADDR)
-                print "DEBUG plc1 erhält motor: " + motor
+                print "DEBUG plc1 erhaelt motor: " + motor
                 Praxisseminar_test_logger.debug('Motor_1: ' + motor)
 
                 # wenn mit eigenem Status-Bereich gearbeitet wird
@@ -75,25 +75,25 @@ class PHMI(HMI):
 
             elif eingabe == '2':
                 motor = self.receive(MOTOR_1, PLC1_ADDR)
-                print "DEBUG plc1 erhält motor: " + motor
+                print "DEBUG plc1 erhaelt motor: " + motor
                 Praxisseminar_test_logger.debug('Motor_1: ' + motor)
 
                 # siehe Eingabe '1'
 
                 if motor == 1:
                     sensor = float(self.receive(SENSOR_1, PLC1_ADDR))
-                    print 'DEBUG plc1 motor: An mit der Geschwindigkeit' + sensor
-                    Praxisseminar_test_logger.debug('Sensor_1: ' + sensor)
+                    print 'DEBUG plc1 motor: An mit der Geschwindigkeit' + str(sensor)
+                    Praxisseminar_test_logger.debug('Sensor_1: ' + str(sensor))
 
-                    # Wollen Sie die Geschwindigkeit verändern? Wie hoch soll die Geschwindigkeit sein (Rahmen der Geschwindigkeit anpassen)
+                    # Wollen Sie die Geschwindigkeit veraendern? Wie hoch soll die Geschwindigkeit sein (Rahmen der Geschwindigkeit anpassen)
                     change = input("Wollen Sie die Geschwindigkeit veraendern? J/N")
 
                     if change == "J" or change == "j":
                         new_vel = float(input("Geben Sie die neue Geschwindigkeit ein: "))
                         self.set(SENSOR_1, new_vel)
                         self.send(SENSOR_1, new_vel, PLC1_ADDR)
-                        print 'DEBUG plc1 motor: An mit neuer Geschwindigkeit' + new_vel
-                        Praxisseminar_test_logger.debug('Sensor_1: ' + new_vel)
+                        print 'DEBUG plc1 motor: An mit neuer Geschwindigkeit' + str(new_vel)
+                        Praxisseminar_test_logger.debug('Sensor_1: ' + str(new_vel))
 
                     elif change == "N" or change == "n":
                         break
@@ -105,7 +105,7 @@ class PHMI(HMI):
 
             elif eingabe == '3':
                 motor = self.receive(MOTOR_1, PLC1_ADDR)
-                print "DEBUG plc1 erhält motor: " + motor
+                print "DEBUG plc1 erhaelt motor: " + motor
                 Praxisseminar_test_logger.debug('Motor_1: ' + motor)
 
                 if motor == 1:

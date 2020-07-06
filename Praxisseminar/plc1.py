@@ -32,7 +32,8 @@ class CbPLC1(PLC):
 		# Verbindung zwischen PLC1 und PLC2
         # self.send(SENSOR1_1, 2, PLC1_ADDR) 
         self.send(SENSOR_1, 0, PLC1_ADDR)
-        Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + SENSOR_1 + ' ' + PLC1_ADDR)
+        sensor = self.get(SENSOR_1)
+        Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + sensor)
 
         time.sleep(sleep)
 
