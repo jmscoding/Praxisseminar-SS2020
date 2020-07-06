@@ -44,10 +44,6 @@ MOTOR_VEL = { #Geschwindigkeitseinstellungen + Quelle Andi
     'MAX': 9.0
 }
 
-MOTOR_STA = { #Status des Motors ob er laeuft oder nicht
-    'ON': 1,
-    'OFF': 0
-}
 
 # topo {{{1
 IP = {
@@ -74,15 +70,15 @@ MAC = {
 
 # others
 PLC1_DATA = {
-    'SENSOR': '0',
-    'MOTOR': '0',  # 0 means OFF and 1 means ON
+    'SENSOR_1': '0',
+    'MOTOR_1': '0',  # 0 means OFF and 1 means ON
 }
 
 # protocol
 PLC1_MAC = MAC['plc1']
 PLC1_TAGS = (
-    ('SENSOR', 1, 'INT'),
-    ('MOTOR', 1, 'INT'),
+    ('SENSOR_1', 1, 'INT'),
+    ('MOTOR_1', 1, 'INT'),
 )
 
 PLC1_ADDR = IP['plc1']
@@ -95,6 +91,18 @@ PLC1_PROTOCOL = {
     'mode': 1,
     'server': PLC1_SERVER
 }
+
+HMI_DATA = {
+    'SENSOR_1': '0',
+    'MOTOR_1': '0',  # 0 means OFF and 1 means ON
+}
+
+# protocol
+
+HMI_TAGS = (
+    ('SENSOR_1', 1, 'INT'),
+    ('MOTOR_1', 1, 'INT'),
+)
 
 # state
 PATH = 'cb_db.sqlite'
@@ -117,6 +125,6 @@ SCHEMA = """
 # Sensor + Actuator initialisieren der Daten
 
 SCHEMA_INIT = """
-    INSERT INTO cb_table VALUES ('SENSOR',   'int', '0', 1);
-    INSERT INTO cb_table VALUES ('MOTOR', 'int', '1', 1);
+    INSERT INTO cb_table VALUES ('SENSOR_1', 'int', '0', 1);
+    INSERT INTO cb_table VALUES ('MOTOR_1', 'int', '1', 1);
 """   

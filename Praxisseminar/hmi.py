@@ -1,20 +1,35 @@
 """
 IN BEARBEITUNG
 
+Zuletzt 06.07. : Hinzufuegen von HMI Protokolldaten
+
 Praxisseminar hmi.py
 """
 
 from minicps.devices import HMI
 from utils import Praxisseminar_test_logger
-from utils import STATE, PLC1_DATA, PLC1_PROTOCOL, PLC1_ADDR
+from utils import STATE, HMI_DATA, PLC1_ADDR, HMI_TAGS, IP
 
 import get_ip
+import get_mac
 
 #import sys
 import time
 
 
 HMI_ADDR = get_ip.get_ip()
+
+HMI_MAC = get_mac.get_mac()
+
+HMI_SERVER = {
+    'address': HMI_ADDR,
+    'tags': HMI_TAGS
+}
+PLC1_PROTOCOL = {
+    'name': 'enip',
+    'mode': 1,
+    'server': HMI_SERVER
+}
 
 # constant tag addresses
 SENSOR_1 = ('SENSOR', 1)
@@ -134,6 +149,6 @@ if __name__ == "__main__":
     phmi = PHMI(
         name='phmi',
         state=STATE,
-        protocol=PLC1_PROTOCOL,
-        memory=PLC1_DATA,
-        disk=PLC1_DATA)
+        protocol=HMI_PROTOCOL,
+        memory=HMI_DATA,
+        disk=HMI_DATA)

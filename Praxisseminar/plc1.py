@@ -8,8 +8,8 @@ from utils import PLC1_PROTOCOL, PLC1_ADDR
 from utils import Praxisseminar_test_logger
 
 import time
-import os
-import sys
+# import os
+# import sys
 
 # constant tag addresses
 SENSOR_1 = ('SENSOR', 1)

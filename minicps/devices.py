@@ -495,16 +495,14 @@ class CB(Device):
         - state APIs: e.g., set a velocity level indicator
     """
     def __init__(
-            self, name, protocol, state,
-            status, velocity):
+            self, name, protocol, state, velocity):
         """
         :param str name: device name
         :param dict protocol: used to set up the network layer API
         :param dict state: used to set up the physical layer API
-        :param int status: ist das Foerderband an oder aus
+
         :param double velocity: welche Geschwindigkeit hat das Foerderband standardmaessig
         """
-        self.status = status
         self.velocity = velocity
         super(CB, self).__init__(name, protocol, state)
 

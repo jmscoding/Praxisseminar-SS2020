@@ -10,7 +10,7 @@ Fliessband physical process
 
 from minicps.devices import CB
 
-from utils import MOTOR_VEL, MOTOR_STA
+from utils import MOTOR_VEL
 from utils import STATE, PLC1_PROTOCOL
 
 import sys
@@ -19,27 +19,24 @@ import time
 
 # Praxisseminar TAGS
 # Beispiel: MV101 = ('MV101', 1)
-MOTOR = ('MOTOR', 1)
-SENSOR = ('SENSOR', 1)
+MOTOR_1 = ('MOTOR', 0)
+SENSOR_1 = ('SENSOR', 0)
 # Praxisseminar TAGS
-
-
-
 
 
 # TODO:
 class ConveyorBelt(CB):
 
-    def pre_loop(self):
+    def pre_loop(self, sleep=0.1):
 
         # Praxisseminar STATE INIT(
 
         # Standardmaessig ist der Motor des Foerderbandes an
-        self.set(MOTOR, 1)
+        self.set(MOTOR_1, 0)
+        self.velocity = self.set(SENSOR_1, float(MOTOR_VEL['MIN']))
         # Praxisseminar STATE INIT)
 
-
-    def main_loop(self):
+    def main_loop(self, sleep=0.1):
 
         count = 0
         while(count == 1000):
@@ -47,17 +44,20 @@ class ConveyorBelt(CB):
             # ueberpruefe ob Motor an ist
             # wenn ja dann setze standarmaessig Anfangsgeschwindigkeit
 
-            motor = self.get(MOTOR)
+            new_velocity = self.velocity
+
+
+            motor = self.get(MOTOR_1)
 
             if int(motor) == 1:
 
-                self.set(MOTOR, MOTOR_VEL['STD'])
+                self.set(SENSOR_1, MOTOR_VEL['STD'])
                 self.velocity = MOTOR_VEL['STD']
 
                 # DEBUG 'Standarmaessige Motorgeschwindigkeit
 
             else:
-                self.set(SENSOR, 0.00)
+                self.set(SENSOR_1, 0.0)
 
 
             # level cannot be negative - ueberpruefen ob eine negative Geschwindigkeit vorherrscht
@@ -89,6 +89,5 @@ if __name__ == '__main__':
         name='cb',
         state=STATE,
         protocol=None,
-        status=MOTOR_STA['OFF'],
         velocity=MOTOR_VEL['MIN']
     )
