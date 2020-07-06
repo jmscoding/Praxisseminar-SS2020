@@ -32,8 +32,8 @@ class CbPLC1(PLC):
 		# Verbindung zwischen PLC1 und PLC2
         # self.send(SENSOR1_1, 2, PLC1_ADDR) 
         self.send(SENSOR_1, 1, PLC1_ADDR)
-        sensor = self.get(SENSOR_1)
-        Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + sensor)
+        #sensor = self.get(SENSOR_1)
+        #Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + sensor)
 
         time.sleep(sleep)
 
@@ -47,10 +47,10 @@ class CbPLC1(PLC):
             rec_s11 = self.receive(SENSOR_1, PLC1_ADDR)
             print 'DEBUG: Praxisseminar plc1 receive SENSOR_1: ', rec_s11
 
-            get_s11 = self.get(SENSOR_1)
-            print 'DEBUG: Praxisseminar plc1 get SENSOR_1: ', get_s11
+            # get_s11 = self.get(SENSOR_1)
+            # print 'DEBUG: Praxisseminar plc1 get SENSOR_1: ', rec_s11
             # ersten eigenen Logger eingefuegt - wirft komische Fehlermeldung
-            Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + str(get_s11))
+            # Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + str(rec_s11))
 
             time.sleep(1)
             count += 1
