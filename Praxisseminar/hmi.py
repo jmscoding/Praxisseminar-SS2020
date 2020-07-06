@@ -36,6 +36,11 @@ class PHMI(HMI):
 
         :param float sleep: second[s] to sleep after each iteration
         """
+
+        # die HMI Addresse zurückgeben
+        print 'DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR
+        Praxisseminar_test_logger.debug('DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR)
+
         sec = 0
         while(sec < 1):
 
@@ -43,6 +48,7 @@ class PHMI(HMI):
             rec_m11 = self.receive(MOTOR_1, PLC1_ADDR)
             Praxisseminar_test_logger.debug('Sensor_1: ' + rec_s11)
             Praxisseminar_test_logger.debug('Motor_1: ' + rec_m11)
+
 
 
             print "Sie haben folgende Optionen: "
