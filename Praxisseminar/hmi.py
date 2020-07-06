@@ -31,7 +31,7 @@ class PHMI(HMI):
     """
 
 
-    def main_loop(self, sleep=0.5):
+    def main_loop(self, sleep=10):
         """HMI main loop.
 
         :param float sleep: second[s] to sleep after each iteration
@@ -42,7 +42,7 @@ class PHMI(HMI):
         Praxisseminar_test_logger.debug('DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR)
 
         sec = 0
-        while(sec < 1):
+        while(True):
 
             rec_s11 = self.receive(SENSOR_1, PLC1_ADDR)
             rec_m11 = self.receive(MOTOR_1, PLC1_ADDR)
@@ -116,9 +116,15 @@ class PHMI(HMI):
                     elif onoff == 1:
                         self.send(MOTOR_1, onoff, PLC1_ADDR)
 
+                elif motor == 0:
+                    onoff = input("Wollen Sie den Motor aus oder einschalten? Aus = 0 /Ein = 1")
+
+                    if onoff == 0:
+                        self.send(MOTOR_1, onoff, PLC1_ADDR)
+                    elif onoff == 1:
+                        self.send(MOTOR_1, onoff, PLC1_ADDR)
             time.sleep(sleep)
 
-            sec += 1
 
 
 

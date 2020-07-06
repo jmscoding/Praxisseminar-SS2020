@@ -1,4 +1,4 @@
-#gibt mir die IP Addresse des aktuellen Hosts zurueck für den HMI
+#gibt Ip Adresse des Hosts an
 
 from netifaces import interfaces, ifaddresses, AF_INET
 
@@ -26,7 +26,3 @@ def get_ip():
 
 #print ip1
 
-
-ip = get_ip()
-
-print ip
