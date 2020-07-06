@@ -31,8 +31,9 @@ class CbPLC1(PLC):
 		
 		# Verbindung zwischen PLC1 und PLC2
         # self.send(SENSOR1_1, 2, PLC1_ADDR) 
-        self.send(SENSOR_1, 1, PLC1_ADDR)
+        self.send(SENSOR_1, 2, PLC1_ADDR)
         Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + SENSOR_1 + ' ' + PLC1_ADDR)
+
         time.sleep(sleep)
 
     def main_loop(self, sleep=0.5):
@@ -42,8 +43,8 @@ class CbPLC1(PLC):
         count = 0
         END = 6e6
         while(True):
-            # rec_s11 = self.receive(SENSOR1_1, PLC1_ADDR)
-            # print 'DEBUG: toy plc1 receive SENSOR3_1: ', rec_s31
+            rec_s11 = self.receive(SENSOR_1, PLC1_ADDR)
+            print 'DEBUG: toy plc1 receive SENSOR3_1: ', rec_s11
 
             get_s11 = self.get(SENSOR_1)
             print 'DEBUG: Praxisseminar plc1 get SENSOR1_1: ', get_s11
