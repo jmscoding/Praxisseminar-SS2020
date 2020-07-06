@@ -100,8 +100,8 @@ HMI_DATA = {
 # protocol
 
 HMI_TAGS = (
-    ('SENSOR_1', 1, 'INT'),
-    ('MOTOR_1', 1, 'INT'),
+    ('SENSOR_1', 2, 'INT'),
+    ('MOTOR_1', 2, 'INT'),
 )
 
 # state
