@@ -70,14 +70,14 @@ MAC = {
 
 # others
 PLC1_DATA = {
-    'SENSOR': '0',  # Verknuepfung mit HMI
+    'SENSOR': '0.0',  # Verknuepfung mit HMI
     'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 
 # protocol
 PLC1_MAC = MAC['plc1']
 PLC1_TAGS = (
-    ('SENSOR', 1, 'INT'),
+    ('SENSOR', 1, 'REAL'),
     ('MOTOR', 1, 'INT'),
 )
 
@@ -93,14 +93,14 @@ PLC1_PROTOCOL = {
 }
 
 HMI_DATA = {
-    'SENSOR': '0',  # Verknuepfung mit PLC1
+    'SENSOR': '0.0',  # Verknuepfung mit PLC1
     'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 
 # protocol
 
 HMI_TAGS = (
-    ('SENSOR', 2, 'INT'),
+    ('SENSOR', 2, 'REAL'),
     ('MOTOR', 2, 'INT'),
 )
 
@@ -125,6 +125,8 @@ SCHEMA = """
 # Sensor + Actuator initialisieren der Daten
 
 SCHEMA_INIT = """
-    INSERT INTO cb_table VALUES ('SENSOR', 'int', '0', 1);
-    INSERT INTO cb_table VALUES ('MOTOR', 'int', '1', 1);
+    INSERT INTO cb_table VALUES ('SENSOR', 'float', '0.0', 1);
+    INSERT INTO cb_table VALUES ('MOTOR', 'int', '0', 1);
+    INSERT INTO cb_table VALUES ('SENSOR', 'float', '0.0', 2);
+    INSERT INTO cb_table VALUES ('MOTOR', 'int', '0', 2);
 """   

@@ -1,6 +1,7 @@
 #gibt Ip Adresse des Hosts an
 
 from netifaces import interfaces, ifaddresses, AF_INET
+from utils import PLC1_ADDR
 
 def get_ip():
     for ifaceName in interfaces():
@@ -15,7 +16,7 @@ def get_ip():
         for i in ifaddresses(ifaceName).setdefault(AF_INET, [{'addr':'No IP addr'}]):
 
             #print i['addr']
-            if i['addr'] != '127.0.0.1':
+            if (i['addr'] != '127.0.0.1') or (i['addr'] != PLC1_ADDR):
                 return i['addr']
 
     return 0

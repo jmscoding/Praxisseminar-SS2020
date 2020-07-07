@@ -54,7 +54,7 @@ class CbPLC1(PLC):
 
             # Lese von HMI
 
-            if (HMI_ADDR) == 0:
+            if (HMI_ADDR == 0) or (HMI_ADDR == PLC1_ADDR):
                 continue
             else:
                 rec_m11 = float(self.receive(MOTOR_1, HMI_ADDR))

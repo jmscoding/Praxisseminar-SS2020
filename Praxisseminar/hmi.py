@@ -61,12 +61,14 @@ class PHMI(HMI):
 
         while(True):
 
-            rec_s11 = self.receive(SENSOR, PLC1_ADDR)
+            rec_s11 = float(self.receive(SENSOR, PLC1_ADDR))
+            print 'DEBUG: SENSOR ' + str(rec_s11)
             self.send(SENSOR_1, rec_s11, HMI_ADDR)
-            rec_m11 = self.receive(MOTOR, PLC1_ADDR)
+            rec_m11 = int(self.receive(MOTOR, PLC1_ADDR))
+            print 'DEBUG: MOTOR ' + str(rec_m11)
             self.send(MOTOR_1, rec_m11, HMI_ADDR)
-            Praxisseminar_test_logger.debug('Sensor_1: ' + rec_s11)
-            Praxisseminar_test_logger.debug('Motor_1: ' + rec_m11)
+            Praxisseminar_test_logger.debug('Sensor_1: ' + str(rec_s11))
+            Praxisseminar_test_logger.debug('Motor_1: ' + str(rec_m11))
 
 
 
