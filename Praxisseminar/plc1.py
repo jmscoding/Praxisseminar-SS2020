@@ -52,9 +52,10 @@ class CbPLC1(PLC):
 
             print str(HMI_ADDR)
 
-            # Lese von HMI
 
-            if (HMI_ADDR == 0) or (HMI_ADDR == PLC1_ADDR):
+            # Lese von HMI - vorher abpruefen ob HMI vorhanden
+
+            if (HMI_ADDR == 0) or (HMI_ADDR == PLC1_ADDR) or (HMI_ADDR == '127.0.0.1'):
                 continue
             else:
                 rec_m11 = self.receive(MOTOR_1, HMI_ADDR)
