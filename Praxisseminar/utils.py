@@ -92,6 +92,10 @@ PLC1_PROTOCOL = {
     'server': PLC1_SERVER
 }
 
+HMI_ADDR = IP['host1']
+
+HMI_MAC = MAC['host1']
+
 HMI_DATA = {
     'SENSOR': '0.0',  # Verknuepfung mit PLC1
     'MOTOR': '0',   # 0 means OFF and 1 means ON
@@ -103,6 +107,16 @@ HMI_TAGS = (
     ('SENSOR', 2, 'REAL'),
     ('MOTOR', 2, 'INT'),
 )
+
+HMI_SERVER = {
+    'address': HMI_ADDR,
+    'tags': HMI_TAGS
+}
+HMI_PROTOCOL = {
+    'name': 'enip',
+    'mode': 1,
+    'server': HMI_SERVER
+}
 
 # state
 PATH = 'cb_db.sqlite'

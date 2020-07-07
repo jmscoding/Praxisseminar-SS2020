@@ -8,14 +8,17 @@ Praxisseminar hmi.py
 
 from minicps.devices import HMI
 from utils import Praxisseminar_test_logger
-from utils import STATE, HMI_DATA, PLC1_ADDR, HMI_TAGS
+from utils import STATE, HMI_DATA, PLC1_ADDR
+from utils import HMI_ADDR, HMI_MAC, HMI_SERVER, HMI_PROTOCOL
 
-import get_ip
-import get_mac
+#import get_ip
+#import get_mac
 
 #import sys
 import time
 
+'''
+Versuch zur Laufzeit die IP und die MAC zu generieren
 
 HMI_ADDR = get_ip.get_ip()
 
@@ -30,6 +33,7 @@ HMI_PROTOCOL = {
     'mode': 1,
     'server': HMI_SERVER
 }
+'''
 
 # constant tag addresses
 # senden an PLC1
