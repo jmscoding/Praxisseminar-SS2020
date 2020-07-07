@@ -2,14 +2,16 @@
 
 from utils import MAC, IP
 
+
 def get_mac(HMI_ADDR):
     for i in IP:
         if IP[i] == HMI_ADDR:
             HMI_NAME = i
             for j in MAC:
-                if MAC[j] == HMI_NAME:
-                    return j
+                if j == HMI_NAME:
+                    return MAC[j]
                 else:
                     continue
         else:
             continue
+
