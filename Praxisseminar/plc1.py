@@ -58,7 +58,7 @@ class CbPLC1(PLC):
             print 'DEBUG: Sende %s an PLC1' % str(rec_m11)
 
             rec_s11 = float(self.receive(SENSOR, PLC1_ADDR))
-            self.send(MOTOR, rec_s11, PLC1_ADDR)
+            self.send(SENSOR, rec_s11, PLC1_ADDR)
 
             print 'DEBUG: Sende %s an PLC1' % str(rec_s11)
 
