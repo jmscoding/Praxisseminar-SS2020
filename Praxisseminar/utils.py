@@ -70,7 +70,7 @@ MAC = {
 
 # others
 PLC1_DATA = {
-    'SENSOR': '0',  # Verknüpfung mit HMI
+    'SENSOR': '0',  # Verknuepfung mit HMI
     'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 
@@ -93,7 +93,7 @@ PLC1_PROTOCOL = {
 }
 
 HMI_DATA = {
-    'SENSOR': '0',  # Verknüpfung mit PLC1
+    'SENSOR': '0',  # Verknuepfung mit PLC1
     'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 
