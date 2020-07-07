@@ -58,14 +58,16 @@ class CbPLC1(PLC):
             # Lese von HMI - vorher abpruefen ob HMI vorhanden
 
             rec_m11 = int(self.receive(MOTOR, HMI_ADDR))
+            self.send(MOTOR, rec_m11, PLC1_ADDR)
             self.set(MOTOR, rec_m11)
             print 'DEBUG: Sende %s an PLC1' % str(rec_m11)
 
             rec_s11 = float(self.receive(SENSOR, HMI_ADDR))
+            self.send(MOTOR, rec_s11, PLC1_ADDR)
             self.set(SENSOR, rec_s11)
             print 'DEBUG: Sende %s an PLC1' % str(rec_s11)
 
-            time.sleep(1)
+            time.sleep(sleep)
             count += 1
 
             if count > END:
