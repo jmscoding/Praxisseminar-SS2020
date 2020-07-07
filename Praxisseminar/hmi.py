@@ -91,9 +91,9 @@ class PHMI(HMI):
                 # wenn mit eigenem Status-Bereich gearbeitet wird
 
 
-                if motor == 1:
+                if motor == '1':
                     print 'DEBUG plc1 motor: An'
-                elif motor == 0:
+                elif motor == '0':
                     print 'DEBUG plc1 motor: Aus'
 
 
