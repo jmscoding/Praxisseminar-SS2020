@@ -78,27 +78,27 @@ class PHMI(HMI):
 
             # Status abfragen
             if eingabe == 1:
-                motor = self.receive(MOTOR_1, PLC1_ADDR)
+                motor = int(self.receive(MOTOR_1, PLC1_ADDR))
                 self.send(MOTOR_1, motor, HMI_ADDR)
-                print "DEBUG plc1 erhaelt motor: " + motor
-                Praxisseminar_test_logger.debug('Motor_1: ' + motor)
+                print "DEBUG plc1 erhaelt motor: " + str(motor)
+                Praxisseminar_test_logger.debug('Motor_1: ' + str(motor))
 
                 # wenn mit eigenem Status-Bereich gearbeitet wird
-                #self.send(MOTOR_1, motor, HMI_ADDR)
+
 
                 if motor == 1:
                     print 'DEBUG plc1 motor: An'
                 elif motor == 0:
                     print 'DEBUG plc1 motor: Aus'
                 print
-                Praxisseminar_test_logger.debug('Motor_1: ' + motor)
+                Praxisseminar_test_logger.debug('Motor_1: ' + str(motor))
 
             #Geschwindigkeit einstellen
             elif eingabe == 2:
-                motor = self.receive(MOTOR_1, PLC1_ADDR)
+                motor = int(self.receive(MOTOR_1, PLC1_ADDR))
                 self.send(MOTOR_1, motor, HMI_ADDR)
-                print "DEBUG plc1 erhaelt motor: " + motor
-                Praxisseminar_test_logger.debug('Motor_1: ' + motor)
+                print "DEBUG plc1 erhaelt motor: " + str(motor)
+                Praxisseminar_test_logger.debug('Motor_1: ' + str(motor))
 
                 # siehe Eingabe '1'
 
@@ -125,17 +125,17 @@ class PHMI(HMI):
                 elif motor == 0:
                     print 'DEBUG plc1 motor: Aus'
                 print
-                Praxisseminar_test_logger.debug('Motor_1: ' + motor)
+                Praxisseminar_test_logger.debug('Motor_1: ' + str(motor))
 
             #Ein oder ausschalten
             elif eingabe == 3:
-                motor = self.receive(MOTOR_1, PLC1_ADDR)
+                motor = int(self.receive(MOTOR_1, PLC1_ADDR))
                 self.send(MOTOR_1, motor, HMI_ADDR)
-                print "DEBUG plc1 erhaelt motor: " + motor
-                Praxisseminar_test_logger.debug('Motor_1: ' + motor)
+                print "DEBUG plc1 erhaelt motor: " + str(motor)
+                Praxisseminar_test_logger.debug('Motor_1: ' + str(motor))
 
                 if motor == 1:
-                    onoff = raw_input("Wollen Sie den Motor aus oder einschalten? Aus = 0 /Ein = 1")
+                    onoff = int(raw_input("Wollen Sie den Motor aus oder einschalten? Aus = 0 /Ein = 1"))
 
                     if onoff == 0:
                         self.send(MOTOR_1, onoff, PLC1_ADDR)
@@ -145,7 +145,7 @@ class PHMI(HMI):
                         self.send(MOTOR_1, onoff, HMI_ADDR)
 
                 elif motor == 0:
-                    onoff = input("Wollen Sie den Motor aus oder einschalten? Aus = 0 /Ein = 1")
+                    onoff = int(raw_input("Wollen Sie den Motor aus oder einschalten? Aus = 0 /Ein = 1"))
 
                     if onoff == 0:
                         self.send(MOTOR_1, onoff, PLC1_ADDR)
