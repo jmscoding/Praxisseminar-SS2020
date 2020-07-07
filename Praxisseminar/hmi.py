@@ -142,6 +142,7 @@ class PHMI(HMI):
 
                     if onoff == 0:
                         self.send(MOTOR, onoff, PLC1_ADDR)
+                        self.send(SENSOR, 0.0, PLC1_ADDR)
 
                     elif onoff == 1:
                         self.send(MOTOR, onoff, PLC1_ADDR)
