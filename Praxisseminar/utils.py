@@ -125,6 +125,6 @@ SCHEMA = """
 # Sensor + Actuator initialisieren der Daten
 
 SCHEMA_INIT = """
-    INSERT INTO cb_table VALUES ('SENSOR_1', 'int', '0', 1);
-    INSERT INTO cb_table VALUES ('MOTOR_1', 'int', '1', 1);
+    INSERT INTO cb_table VALUES ('SENSOR', 'int', '0', 1);
+    INSERT INTO cb_table VALUES ('MOTOR', 'int', '1', 1);
 """   
