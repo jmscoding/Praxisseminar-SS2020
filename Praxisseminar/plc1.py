@@ -57,9 +57,9 @@ class CbPLC1(PLC):
             if (HMI_ADDR == 0) or (HMI_ADDR == PLC1_ADDR):
                 continue
             else:
-                rec_m11 = float(self.receive(MOTOR_1, HMI_ADDR))
+                rec_m11 = self.receive(MOTOR_1, HMI_ADDR)
                 self.send(MOTOR, rec_m11, PLC1_ADDR)
-                rec_s11 = float(self.receive(SENSOR_1, HMI_ADDR))
+                rec_s11 = self.receive(SENSOR_1, HMI_ADDR)
                 self.send(MOTOR, rec_s11, PLC1_ADDR)
 
 
