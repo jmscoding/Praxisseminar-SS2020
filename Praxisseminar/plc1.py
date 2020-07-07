@@ -43,7 +43,7 @@ class CbPLC1(PLC):
         END = 1000
         while(True):
             get_s11 = float(self.get(SENSOR))
-            print 'DEBUG: Praxisseminar plc1 receive MOTOR: ' + str(get_s11)
+            print 'DEBUG: Praxisseminar plc1 receive SENSOR: ' + str(get_s11)
             self.send(SENSOR, get_s11, PLC1_ADDR)
 
             get_m11 = int(self.get(MOTOR))
@@ -58,17 +58,15 @@ class CbPLC1(PLC):
             if (HMI_ADDR == 0) or (HMI_ADDR == PLC1_ADDR) or (HMI_ADDR == '127.0.0.1'):
                 continue
             else:
-                rec_m11 = self.receive(MOTOR_1, HMI_ADDR)
+                rec_m11 = float(self.get(MOTOR_1))
                 self.send(MOTOR, rec_m11, PLC1_ADDR)
-                print 'DEBUG: Sende %s an PLC1' % rec_m11
+                print 'DEBUG: Sende %s an PLC1' % str(rec_m11)
 
-                self.set(MOTOR, int(rec_m11))
 
-                rec_s11 = self.receive(SENSOR_1, HMI_ADDR)
+                rec_s11 = int(self.get(SENSOR_1))
                 self.send(MOTOR, rec_s11, PLC1_ADDR)
-                print 'DEBUG: Sende %s an PLC1' % rec_s11
+                print 'DEBUG: Sende %s an PLC1' % str(rec_s11)
 
-                self.set(SENSOR, float(rec_s11))
 
 
             time.sleep(1)
