@@ -5,11 +5,11 @@ from hmi import HMI_ADDR
 
 def get_mac():
     for i in IP:
-        if i.values() == HMI_ADDR:
-            HMI_NAME = i.keys()
+        if IP[i] == HMI_ADDR:
+            HMI_NAME = i
             for j in MAC:
-                if j.values() == HMI_NAME:
-                    return j.keys()
+                if MAC[j] == HMI_NAME:
+                    return j
                 else:
                     continue
         else:
