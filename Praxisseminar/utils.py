@@ -70,15 +70,15 @@ MAC = {
 
 # others
 PLC1_DATA = {
-    'SENSOR_1': '0',
-    'MOTOR_1': '0',  # 0 means OFF and 1 means ON
+    'SENSOR': '0',  # Verknüpfung mit HMI
+    'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 
 # protocol
 PLC1_MAC = MAC['plc1']
 PLC1_TAGS = (
-    ('SENSOR_1', 1, 'INT'),
-    ('MOTOR_1', 1, 'INT'),
+    ('SENSOR', 1, 'INT'),
+    ('MOTOR', 1, 'INT'),
 )
 
 PLC1_ADDR = IP['plc1']
@@ -93,15 +93,15 @@ PLC1_PROTOCOL = {
 }
 
 HMI_DATA = {
-    'SENSOR_1': '0',
-    'MOTOR_1': '0',  # 0 means OFF and 1 means ON
+    'SENSOR': '0',  # Verknüpfung mit PLC1
+    'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 
 # protocol
 
 HMI_TAGS = (
-    ('SENSOR_1', 2, 'INT'),
-    ('MOTOR_1', 2, 'INT'),
+    ('SENSOR', 2, 'INT'),
+    ('MOTOR', 2, 'INT'),
 )
 
 # state

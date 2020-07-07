@@ -33,7 +33,7 @@ class ConveyorBelt(CB):
 
         # Standardmaessig ist der Motor des Foerderbandes an
         self.set(MOTOR, 0)
-        self.velocity = self.set(SENSOR, float(MOTOR_VEL['MIN']))
+
         # Praxisseminar STATE INIT)
 
     def main_loop(self, sleep=0.1):
@@ -51,10 +51,10 @@ class ConveyorBelt(CB):
                 new_velocity = self.get(SENSOR)
                 self.set(SENSOR, new_velocity)
 
-                # DEBUG 'Standarmaessige Motorgeschwindigkeit
 
+            # DEBUG 'Standarmaessige Motorgeschwindigkeit
             else:
-                self.set(SENSOR, MOTOR_VEL['MIN'])
+                self.set(SENSOR, self.velocity)
 
 
             time.sleep(sleep)
