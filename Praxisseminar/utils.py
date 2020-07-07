@@ -92,6 +92,8 @@ PLC1_PROTOCOL = {
     'server': PLC1_SERVER
 }
 
+'''
+
 HMI_ADDR = IP['host1']
 
 HMI_MAC = MAC['host1']
@@ -117,6 +119,8 @@ HMI_PROTOCOL = {
     'mode': 1,
     'server': HMI_SERVER
 }
+
+'''
 
 # state
 PATH = 'cb_db.sqlite'

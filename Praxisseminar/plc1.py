@@ -7,7 +7,7 @@ from utils import PLC1_DATA, STATE, MOTOR_VEL
 from utils import PLC1_PROTOCOL, PLC1_ADDR
 from utils import Praxisseminar_test_logger
 
-from hmi import HMI_ADDR
+
 
 import time
 # import os
@@ -36,9 +36,6 @@ class CbPLC1(PLC):
         print 'DEBUG: Praxisseminar plc1 enters main_loop'
         print
 
-        # self.set(MOTOR, 0)
-        # self.set(SENSOR, MOTOR_VEL['MIN'])
-
         count = 0
         END = 1000
         while(True):
@@ -53,16 +50,14 @@ class CbPLC1(PLC):
             self.send(MOTOR, get_m11, PLC1_ADDR)
             '''
 
-            print str(HMI_ADDR)
-
             # Lese von HMI - vorher abpruefen ob HMI vorhanden
 
-            rec_m11 = int(self.receive(MOTOR, HMI_ADDR))
+            rec_m11 = int(self.receive(MOTOR, PLC1_ADDR))
             self.send(MOTOR, rec_m11, PLC1_ADDR)
 
             print 'DEBUG: Sende %s an PLC1' % str(rec_m11)
 
-            rec_s11 = float(self.receive(SENSOR, HMI_ADDR))
+            rec_s11 = float(self.receive(SENSOR, PLC1_ADDR))
             self.send(MOTOR, rec_s11, PLC1_ADDR)
 
             print 'DEBUG: Sende %s an PLC1' % str(rec_s11)

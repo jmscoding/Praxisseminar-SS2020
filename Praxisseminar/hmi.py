@@ -8,8 +8,8 @@ Praxisseminar hmi.py
 
 from minicps.devices import HMI
 from utils import Praxisseminar_test_logger
-from utils import STATE, HMI_DATA, PLC1_ADDR
-from utils import HMI_ADDR, HMI_MAC, HMI_SERVER, HMI_PROTOCOL
+from utils import STATE, PLC1_DATA, PLC1_ADDR, PLC1_PROTOCOL
+
 
 #import get_ip
 #import get_mac
@@ -60,8 +60,8 @@ class PHMI(HMI):
         """
 
         # die HMI Addresse zurueckgeben
-        print 'DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR + ' ' + str(HMI_MAC)
-        Praxisseminar_test_logger.debug('DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR + ' ' + str(HMI_MAC))
+        #print 'DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR + ' ' + str(HMI_MAC)
+        #Praxisseminar_test_logger.debug('DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR + ' ' + str(HMI_MAC))
 
         while(True):
             '''
@@ -171,6 +171,6 @@ if __name__ == "__main__":
     phmi = PHMI(
         name='phmi',
         state=STATE,
-        protocol=HMI_PROTOCOL,
-        memory=HMI_DATA,
-        disk=HMI_DATA)
+        protocol=PLC1_PROTOCOL,
+        memory=PLC1_DATA,
+        disk=PLC1_DATA)
