@@ -92,7 +92,7 @@ PLC1_PROTOCOL = {
     'server': PLC1_SERVER
 }
 
-'''
+
 
 HMI_ADDR = IP['host1']
 
@@ -120,7 +120,7 @@ HMI_PROTOCOL = {
     'server': HMI_SERVER
 }
 
-'''
+
 
 # state
 PATH = 'cb_db.sqlite'

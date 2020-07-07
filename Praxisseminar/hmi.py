@@ -8,7 +8,9 @@ Praxisseminar hmi.py
 
 from minicps.devices import HMI
 from utils import Praxisseminar_test_logger
-from utils import STATE, PLC1_DATA, PLC1_ADDR, PLC1_PROTOCOL
+from utils import STATE, PLC1_ADDR
+
+from utils import HMI_PROTOCOL, HMI_DATA
 
 
 #import get_ip
@@ -171,6 +173,6 @@ if __name__ == "__main__":
     phmi = PHMI(
         name='phmi',
         state=STATE,
-        protocol=PLC1_PROTOCOL,
-        memory=PLC1_DATA,
-        disk=PLC1_DATA)
+        protocol=HMI_PROTOCOL,
+        memory=HMI_DATA,
+        disk=HMI_DATA)

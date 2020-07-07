@@ -3,10 +3,11 @@ Praxisseminar plc1.py
 """
 
 from minicps.devices import PLC
-from utils import PLC1_DATA, STATE, MOTOR_VEL
+from utils import PLC1_DATA, STATE
 from utils import PLC1_PROTOCOL, PLC1_ADDR
 from utils import Praxisseminar_test_logger
 
+# noch einmal ausprobieren mit eigenem Protokoll
 
 
 import time
