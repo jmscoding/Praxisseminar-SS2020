@@ -14,8 +14,12 @@ import time
 # import sys
 
 # constant tag addresses
-SENSOR_1 = ('SENSOR', 1)
-MOTOR_1 = ('MOTOR', 1)
+SENSOR = ('SENSOR', 1)
+MOTOR = ('MOTOR', 1)
+
+# Verbindungen zwischen einer HMI und der PLC
+MOTOR_1 = ('MOTOR', 2)
+SENSOR_1 = ('SENSOR', 2)
 
 
 
@@ -25,17 +29,6 @@ class CbPLC1(PLC):
     def pre_loop(self, sleep=0.1):
         print 'DEBUG: Praxisseminar plc1 enters pre_loop'
         print
-		
-
-        # sensor1 = self.set(SENSOR1_1, 2)
-        # print 'DEBUG: Praxisseminar plc1 sensor1: ', self.get(SENSOR1_1)
-        # self.memory['SENSOR1'] = sensor1
-		
-		# Verbindung zwischen PLC1 und
-        # self.send(SENSOR1_1, 2, PLC1_ADDR) 
-        self.send(SENSOR_1, 1, PLC1_ADDR)
-        #sensor = self.get(SENSOR_1)
-        #Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + sensor)
 
         time.sleep(sleep)
 
@@ -44,15 +37,28 @@ class CbPLC1(PLC):
         print
 
         count = 0
-        END = 6e6
+        END = 1000
         while(True):
-            rec_s11 = self.receive(SENSOR_1, PLC1_ADDR)
-            print 'DEBUG: Praxisseminar plc1 receive SENSOR_1: ', rec_s11
+            rec_s11 = float(self.get(SENSOR))
+            print 'DEBUG: Praxisseminar plc1 receive MOTOR: ' + str(rec_s11)
+            self.send(SENSOR, rec_s11, PLC1_ADDR)
 
-            # get_s11 = self.get(SENSOR_1)
-            # print 'DEBUG: Praxisseminar plc1 get SENSOR_1: ', rec_s11
-            # ersten eigenen Logger eingefuegt - wirft komische Fehlermeldung
-            # Praxisseminar_test_logger.debug('Praxisseminar plc1 get SENSOR_1: ' + str(rec_s11))
+            rec_m11 = int(self.get(MOTOR))
+            print 'DEBUG: Praxisseminar plc1 receive MOTOR: ' + str(rec_m11)
+            self.send(MOTOR, rec_m11, PLC1_ADDR)
+
+            print str(HMI_ADDR)
+
+            # Lese von HMI
+
+            if (HMI_ADDR) == 0:
+                continue
+            else:
+                rec_m11 = float(self.receive(MOTOR_1, HMI_ADDR))
+                self.send(MOTOR, rec_m11, PLC1_ADDR)
+                rec_s11 = float(self.receive(SENSOR_1, HMI_ADDR))
+                self.send(MOTOR, rec_s11, PLC1_ADDR)
+
 
             time.sleep(1)
             count += 1

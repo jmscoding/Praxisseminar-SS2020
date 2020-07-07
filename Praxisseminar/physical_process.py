@@ -11,7 +11,7 @@ Fliessband physical process
 from minicps.devices import CB
 
 from utils import MOTOR_VEL
-from utils import STATE, PLC1_PROTOCOL
+from utils import STATE
 
 import sys
 import time
@@ -19,8 +19,8 @@ import time
 
 # Praxisseminar TAGS
 # Beispiel: MV101 = ('MV101', 1)
-MOTOR_1 = ('MOTOR', 1)
-SENSOR_1 = ('SENSOR', 1)
+MOTOR = ('MOTOR', 1)
+SENSOR = ('SENSOR', 1)
 # Praxisseminar TAGS
 
 
@@ -32,8 +32,8 @@ class ConveyorBelt(CB):
         # Praxisseminar STATE INIT(
 
         # Standardmaessig ist der Motor des Foerderbandes an
-        self.set(MOTOR_1, 0)
-        self.velocity = self.set(SENSOR_1, float(MOTOR_VEL['MIN']))
+        self.set(MOTOR, 0)
+        self.velocity = self.set(SENSOR, float(MOTOR_VEL['MIN']))
         # Praxisseminar STATE INIT)
 
     def main_loop(self, sleep=0.1):
@@ -44,43 +44,22 @@ class ConveyorBelt(CB):
             # ueberpruefe ob Motor an ist
             # wenn ja dann setze standarmaessig Anfangsgeschwindigkeit
 
-            new_velocity = self.velocity
-            self.set(SENSOR_1, new_velocity)
-
-            motor = self.get(MOTOR_1)
+            motor = self.get(MOTOR)
 
             if int(motor) == 1:
 
-                self.set(SENSOR_1, MOTOR_VEL['STD'])
-                self.velocity = MOTOR_VEL['STD']
+                new_velocity = self.get(SENSOR)
+                self.set(SENSOR, new_velocity)
 
                 # DEBUG 'Standarmaessige Motorgeschwindigkeit
 
             else:
-                self.set(SENSOR_1, 0.0)
+                self.set(SENSOR, MOTOR_VEL['MIN'])
 
 
-            # level cannot be negative - ueberpruefen ob eine negative Geschwindigkeit vorherrscht
-            #if new_velocity <= 0.0:
-            #   new_level = 0.0
-
-            # Neue Geschwindigkeit an den Sensor uebergeben
-            # update internal and state water level
-            #print "DEBUG new_level: %.5f \t delta: %.5f" % (
-            #   new_level, new_level - self.level)
-            #self.level = self.set(LIT101, new_level)
-
-
-            # ueberpruefen ob die neue Geschwindigkeit zu hoch ist
-            # 988 sec starting from 0.500 m
-            #if new_level >= LIT_101_M['HH']:
-            #    print 'DEBUG RawWaterTank above HH count: ', count
-            #    break
-
+            time.sleep(sleep)
             count += 1
 
-            # wann soll ich dem Prozess einen Sleep geben?
-            # time.sleep(PP_PERIOD_SEC)
 
 
 if __name__ == '__main__':

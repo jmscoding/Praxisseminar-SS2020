@@ -18,6 +18,9 @@ def get_ip():
             if i['addr'] != '127.0.0.1':
                 return i['addr']
 
+    return 0
+
+
 
 
 #ip = get_ip()
