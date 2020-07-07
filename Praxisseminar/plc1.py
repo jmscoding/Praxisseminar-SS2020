@@ -32,16 +32,18 @@ class CbPLC1(PLC):
 
         time.sleep(sleep)
 
-    def main_loop(self, sleep=0.5):
+    def main_loop(self, sleep=10):
         print 'DEBUG: Praxisseminar plc1 enters main_loop'
         print
 
-        self.set(MOTOR, 0)
-        self.set(SENSOR, MOTOR_VEL['MIN'])
+        # self.set(MOTOR, 0)
+        # self.set(SENSOR, MOTOR_VEL['MIN'])
 
         count = 0
         END = 1000
         while(True):
+
+            '''
             get_s11 = float(self.get(SENSOR))
             print 'DEBUG: Praxisseminar plc1 receive SENSOR: ' + str(get_s11)
             self.send(SENSOR, get_s11, PLC1_ADDR)
@@ -49,28 +51,19 @@ class CbPLC1(PLC):
             get_m11 = int(self.get(MOTOR))
             print 'DEBUG: Praxisseminar plc1 receive MOTOR: ' + str(get_m11)
             self.send(MOTOR, get_m11, PLC1_ADDR)
+            '''
 
             print str(HMI_ADDR)
 
-
             # Lese von HMI - vorher abpruefen ob HMI vorhanden
 
-            if (HMI_ADDR == 0) or (HMI_ADDR == PLC1_ADDR) or (HMI_ADDR == '127.0.0.1'):
-                continue
-            else:
-                rec_m11 = int(self.get(MOTOR))
-                self.send(MOTOR, rec_m11, PLC1_ADDR)
-                print 'DEBUG: Sende %s an PLC1' % str(rec_m11)
+            rec_m11 = int(self.receive(MOTOR, HMI_ADDR))
+            self.set(MOTOR, rec_m11)
+            print 'DEBUG: Sende %s an PLC1' % str(rec_m11)
 
-                self.set(MOTOR, rec_m11)
-
-                rec_s11 = float(self.get(SENSOR))
-                self.send(SENSOR, rec_s11, PLC1_ADDR)
-                print 'DEBUG: Sende %s an PLC1' % str(rec_s11)
-
-                self.set(SENSOR, rec_s11)
-
-
+            rec_s11 = float(self.receive(SENSOR, HMI_ADDR))
+            self.set(SENSOR, rec_s11)
+            print 'DEBUG: Sende %s an PLC1' % str(rec_s11)
 
             time.sleep(1)
             count += 1
