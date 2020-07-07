@@ -8,7 +8,7 @@ Praxisseminar hmi.py
 
 from minicps.devices import HMI
 from utils import Praxisseminar_test_logger
-from utils import STATE, HMI_DATA, PLC1_ADDR, HMI_TAGS, IP
+from utils import STATE, HMI_DATA, PLC1_ADDR, HMI_TAGS
 
 import get_ip
 import get_mac
@@ -49,14 +49,16 @@ class PHMI(HMI):
     def main_loop(self, sleep=10):
         """HMI main loop.
 
-        :param float sleep: second[s] to sleep after each iteration
+
         """
 
         # die HMI Addresse zurueckgeben
-        print 'DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR
-        Praxisseminar_test_logger.debug('DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR)
+        print 'DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR + ' ' + HMI_MAC
+        Praxisseminar_test_logger.debug('DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR + ' ' + HMI_MAC)
 
-        sec = 0
+        self.send(SENSOR_1, 1, HMI_ADDR)
+        self.send(MOTOR_1, 1, HMI_ADDR)
+
         while(True):
 
             rec_s11 = self.receive(SENSOR_1, PLC1_ADDR)
@@ -71,7 +73,7 @@ class PHMI(HMI):
             print "Sie haben folgende Optionen: "
             print
             eingabe = str(input("Auslesen Status: Taste 1/ Geschwindigkeit einstellen: Taste 2/ Ein-/Ausschalten: Taste 3/ Programm beenden: Taste 99 "))
-
+            print 'DEBUG: eingabe = %s' % eingabe
             # evtl doch auf switch ... case umsteigen - geht nicht so wie ich mir das vorstelle
 
             # Status abfragen (Ein
@@ -117,7 +119,7 @@ class PHMI(HMI):
                         Praxisseminar_test_logger.debug('Sensor_1: ' + str(new_vel))
 
                     elif change == "N" or change == "n":
-                        break
+                        continue
 
                 elif motor == 0:
                     print 'DEBUG plc1 motor: Aus'
@@ -149,6 +151,12 @@ class PHMI(HMI):
                     elif onoff == 1:
                         self.send(MOTOR_1, onoff, PLC1_ADDR)
                         self.send(MOTOR_1, onoff, HMI_ADDR)
+
+            elif eingabe == '99':
+                print 'DEBUG: HMI Shutdown'
+                Praxisseminar_test_logger.debug('DEBUG: HMI Shutdown')
+                break
+
             time.sleep(sleep)
 
 
