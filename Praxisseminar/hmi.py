@@ -19,7 +19,7 @@ import time
 
 HMI_ADDR = get_ip.get_ip()
 
-HMI_MAC = get_mac.get_mac()
+HMI_MAC = get_mac.get_mac(HMI_ADDR)
 
 HMI_SERVER = {
     'address': HMI_ADDR,

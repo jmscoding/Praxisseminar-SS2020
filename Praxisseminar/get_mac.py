@@ -1,9 +1,8 @@
 # Funktion die die Mac Adresse einer HMI ausliest
 
 from utils import MAC, IP
-from hmi import HMI_ADDR
 
-def get_mac():
+def get_mac(HMI_ADDR):
     for i in IP:
         if IP[i] == HMI_ADDR:
             HMI_NAME = i
