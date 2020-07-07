@@ -18,8 +18,8 @@ SENSOR = ('SENSOR', 1)
 MOTOR = ('MOTOR', 1)
 
 # Verbindungen zwischen einer HMI und der PLC
-MOTOR_1 = ('MOTOR', 2)
-SENSOR_1 = ('SENSOR', 2)
+# MOTOR_1 = ('MOTOR', 2)
+# SENSOR_1 = ('SENSOR', 2)
 
 
 

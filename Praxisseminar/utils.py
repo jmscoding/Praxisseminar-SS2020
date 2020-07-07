@@ -104,8 +104,8 @@ HMI_DATA = {
 # protocol
 
 HMI_TAGS = (
-    ('SENSOR', 2, 'REAL'),
-    ('MOTOR', 2, 'INT'),
+    ('SENSOR', 1, 'REAL'),
+    ('MOTOR', 1, 'INT'),
 )
 
 HMI_SERVER = {
@@ -141,6 +141,4 @@ SCHEMA = """
 SCHEMA_INIT = """
     INSERT INTO cb_table VALUES ('SENSOR', 'float', '0.0', 1);
     INSERT INTO cb_table VALUES ('MOTOR', 'int', '0', 1);
-    INSERT INTO cb_table VALUES ('SENSOR', 'float', '0.0', 2);
-    INSERT INTO cb_table VALUES ('MOTOR', 'int', '0', 2);
 """   
