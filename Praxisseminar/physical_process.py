@@ -19,8 +19,8 @@ import time
 
 # Praxisseminar TAGS
 # Beispiel: MV101 = ('MV101', 1)
-MOTOR_1 = ('MOTOR', 0)
-SENSOR_1 = ('SENSOR', 0)
+MOTOR_1 = ('MOTOR', 1)
+SENSOR_1 = ('SENSOR', 1)
 # Praxisseminar TAGS
 
 
@@ -45,7 +45,7 @@ class ConveyorBelt(CB):
             # wenn ja dann setze standarmaessig Anfangsgeschwindigkeit
 
             new_velocity = self.velocity
-
+            self.set(SENSOR_1, new_velocity)
 
             motor = self.get(MOTOR_1)
 

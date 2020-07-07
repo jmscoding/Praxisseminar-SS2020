@@ -32,8 +32,8 @@ HMI_PROTOCOL = {
 }
 
 # constant tag addresses
-SENSOR_1 = ('SENSOR', 1)
-MOTOR_1 = ('MOTOR', 1)
+SENSOR_1 = ('SENSOR', 2)
+MOTOR_1 = ('MOTOR', 2)
 
 
 class PHMI(HMI):

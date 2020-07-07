@@ -7,6 +7,8 @@ from utils import PLC1_DATA, STATE
 from utils import PLC1_PROTOCOL, PLC1_ADDR
 from utils import Praxisseminar_test_logger
 
+from hmi import HMI_ADDR
+
 import time
 # import os
 # import sys
@@ -29,7 +31,7 @@ class CbPLC1(PLC):
         # print 'DEBUG: Praxisseminar plc1 sensor1: ', self.get(SENSOR1_1)
         # self.memory['SENSOR1'] = sensor1
 		
-		# Verbindung zwischen PLC1 und PLC2
+		# Verbindung zwischen PLC1 und
         # self.send(SENSOR1_1, 2, PLC1_ADDR) 
         self.send(SENSOR_1, 1, PLC1_ADDR)
         #sensor = self.get(SENSOR_1)

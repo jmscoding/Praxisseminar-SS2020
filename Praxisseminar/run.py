@@ -19,15 +19,17 @@ class PraxisseminarCPS(MiniCPS):
         self.name = name
         self.net = net
 
-        self.net.start()
+        net.start()
+
+        net.pingAll()
 
         # start devices
-        # plc1 = self.net.get('plc1')
+        # plc1, s1 = self.net.get('plc1', )
         # plc1.cmd(sys.executable + ' plc1.py &')
 
         CLI(self.net)
 
-        self.net.stop()
+        net.stop()
 
 if __name__ == "__main__":
 
