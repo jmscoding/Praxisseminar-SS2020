@@ -88,7 +88,7 @@ class PHMI(HMI):
             if eingabe == 1:
                 motor = self.receive(MOTOR, PLC1_ADDR)
                 print "DEBUG plc1 erhaelt motor: " + motor
-                Praxisseminar_test_logger.debug('Motor_1: ' + motor)
+                Praxisseminar_test_logger.debug('Motor: ' + motor)
 
                 # wenn mit eigenem Status-Bereich gearbeitet wird
 
@@ -103,14 +103,14 @@ class PHMI(HMI):
             elif eingabe == 2:
                 motor = self.receive(MOTOR, PLC1_ADDR)
                 print "DEBUG plc1 erhaelt motor: " + motor
-                Praxisseminar_test_logger.debug('Motor_1: ' + motor)
+                Praxisseminar_test_logger.debug('Motor: ' + motor)
 
                 # siehe Eingabe '1'
 
                 if motor == '1':
                     sensor = self.receive(SENSOR, PLC1_ADDR)
                     print 'DEBUG plc1 motor: An mit der Geschwindigkeit' + sensor
-                    Praxisseminar_test_logger.debug('Sensor_1: ' + sensor)
+                    Praxisseminar_test_logger.debug('Sensor: ' + sensor)
 
                     # Wollen Sie die Geschwindigkeit veraendern? Wie hoch soll die Geschwindigkeit sein (Rahmen der Geschwindigkeit anpassen)
                     change = raw_input("Wollen Sie die Geschwindigkeit veraendern? J/N")
@@ -119,7 +119,7 @@ class PHMI(HMI):
                         new_vel = float(raw_input("Geben Sie die neue Geschwindigkeit ein: "))
                         self.send(SENSOR, new_vel, PLC1_ADDR)
                         print 'DEBUG plc1 motor: An mit neuer Geschwindigkeit' + str(new_vel)
-                        Praxisseminar_test_logger.debug('Sensor_1: ' + str(new_vel))
+                        Praxisseminar_test_logger.debug('Sensor: ' + str(new_vel))
 
                     elif change == "N" or change == "n":
                         continue
@@ -127,13 +127,13 @@ class PHMI(HMI):
                 elif motor == '0':
                     print 'DEBUG plc1 motor: Aus'
                 print
-                Praxisseminar_test_logger.debug('Motor_1: ' + str(motor))
+                Praxisseminar_test_logger.debug('Motor: ' + str(motor))
 
             #Ein oder ausschalten
             elif eingabe == 3:
                 motor = self.receive(MOTOR, PLC1_ADDR)
                 print "DEBUG plc1 erhaelt motor: " + motor
-                Praxisseminar_test_logger.debug('Motor_1: ' + motor)
+                Praxisseminar_test_logger.debug('Motor: ' + motor)
 
                 if motor == '1':
                     onoff = int(raw_input("Wollen Sie den Motor aus oder einschalten? Aus = 0 /Ein = 1"))

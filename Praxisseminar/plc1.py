@@ -58,13 +58,13 @@ class CbPLC1(PLC):
             if (HMI_ADDR == 0) or (HMI_ADDR == PLC1_ADDR) or (HMI_ADDR == '127.0.0.1'):
                 continue
             else:
-                rec_m11 = int(self.get(MOTOR_1))
+                rec_m11 = int(self.get(MOTOR))
                 self.send(MOTOR, rec_m11, PLC1_ADDR)
                 print 'DEBUG: Sende %s an PLC1' % str(rec_m11)
 
                 self.set(MOTOR, rec_m11)
 
-                rec_s11 = float(self.get(SENSOR_1))
+                rec_s11 = float(self.get(SENSOR))
                 self.send(SENSOR, rec_s11, PLC1_ADDR)
                 print 'DEBUG: Sende %s an PLC1' % str(rec_s11)
 
