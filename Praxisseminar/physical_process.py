@@ -8,9 +8,9 @@ Fliessband physical process
 """
 
 
-from minicps.devices import CB
+from minicps.devices import Tank
 
-from utils import MOTOR_VEL
+#from utils import MOTOR_VEL
 from utils import STATE
 
 import sys
@@ -25,7 +25,7 @@ SENSOR = ('SENSOR', 1)
 
 
 # TODO:
-class ConveyorBelt(CB):
+class ConveyorBelt(Tank):
 
     def pre_loop(self, sleep=0.1):
 
@@ -54,7 +54,7 @@ class ConveyorBelt(CB):
 
             # DEBUG 'Standarmaessige Motorgeschwindigkeit
             else:
-                self.set(SENSOR, self.velocity)
+                self.set(SENSOR, 0.0)
 
 
             time.sleep(sleep)
@@ -68,5 +68,6 @@ if __name__ == '__main__':
         name='cb',
         state=STATE,
         protocol=None,
-        velocity=MOTOR_VEL['MIN']
+        section=None,
+        level=None
     )
