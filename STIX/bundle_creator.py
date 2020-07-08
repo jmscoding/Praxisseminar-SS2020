@@ -65,7 +65,7 @@ attack_pattern1 = AttackPattern(
     external_references=[ref_capec1]
 )
 
-attack_pattern3 = AttackPattern(
+attack_pattern2 = AttackPattern(
     type="attack-pattern",
     id="attack-pattern--2",
     created="2020-07-08T23:39:03.893Z",
@@ -77,5 +77,6 @@ attack_pattern3 = AttackPattern(
 relationship1 = Relationship(threat_actor, 'attributed-to', identity1)
 relationship2 = Relationship(threat_actor, 'attributed-to', identity2)
 relationship3 = Relationship(threat_actor, 'uses', attack_pattern1)
+relationship4 = Relationship(threat_actor, 'uses', attack_pattern2)
 
-bundle = Bundle(objects=[attack_pattern1, threat_actor, identity1, identity2, relationship1, relationship2, relationship3])
+bundle = Bundle(objects=[attack_pattern1, attack_pattern2, threat_actor, identity1, identity2, relationship1, relationship2, relationship3])
