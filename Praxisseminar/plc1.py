@@ -6,24 +6,18 @@ from minicps.devices import PLC
 from utils import PLC1_DATA, STATE
 from utils import PLC1_PROTOCOL, PLC1_ADDR
 from utils import Praxisseminar_test_logger
+from utils import MOTOR_VEL
 
 
 
 import time
-# import os
-# import sys
+
 
 # constant tag addresses
 SENSOR = ('SENSOR', 1)
 MOTOR = ('MOTOR', 1)
 
-# Verbindungen zwischen einer HMI und der PLC
-# MOTOR_1 = ('MOTOR', 2)
-# SENSOR_1 = ('SENSOR', 2)
-
-
-
-# TODO: decide how to map what tuples into memory and disk
+# Die Klasse des Fliessbandes
 class CbPLC1(PLC):
 
     def pre_loop(self, sleep=0.1):
@@ -40,17 +34,8 @@ class CbPLC1(PLC):
         END = 1000
         while(True):
 
-            '''
-            get_s11 = float(self.get(SENSOR))
-            print 'DEBUG: Praxisseminar plc1 receive SENSOR: ' + str(get_s11)
-            self.send(SENSOR, get_s11, PLC1_ADDR)
-
-            get_m11 = int(self.get(MOTOR))
-            print 'DEBUG: Praxisseminar plc1 receive MOTOR: ' + str(get_m11)
-            self.send(MOTOR, get_m11, PLC1_ADDR)
-            '''
-
             # Lese von HMI - vorher abpruefen ob HMI vorhanden
+
 
             rec_m11 = int(self.receive(MOTOR, PLC1_ADDR))
             self.send(MOTOR, rec_m11, PLC1_ADDR)
@@ -65,7 +50,9 @@ class CbPLC1(PLC):
             time.sleep(sleep)
             count += 1
 
-            if count > END:
+            # Programmabbruch bei zu hoher Geschwindigkeit
+
+            if (count > END) or (rec_s11 > MOTOR_VEL['MAX']):
                 print 'DEBUG Praxisseminar plc1 shutdown'
                 Praxisseminar_test_logger.debug('PLC1 shutdown ')
                 break

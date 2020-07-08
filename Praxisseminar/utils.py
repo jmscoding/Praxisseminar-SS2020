@@ -37,8 +37,6 @@ Praxisseminar_logger = build_debug_logger(
 
 # Control logic threshold
 MOTOR_VEL = { #Geschwindigkeitseinstellungen + Quelle Andi
-    'LV': 0.9,
-    'HV': 6.0,
     'STD': 3.0,
     'MIN': 0.0,
     'MAX': 9.0
