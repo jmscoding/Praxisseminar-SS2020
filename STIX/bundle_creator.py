@@ -1,6 +1,6 @@
 # erstellt ein Bundle eines Stix Vorfalls
 
-from stix2 import (ThreatActor, Identity, Relationship, Bundle, AttackPattern, ExternalReference)
+from stix2.v21 import (ThreatActor, Identity, Relationship, Bundle, AttackPattern, ExternalReference)
 
 # automatische Uebernahme der Zeitangabe und wann es modifiziert wurde
 # automatisches Hinzufuegen einer ID

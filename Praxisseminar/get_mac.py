@@ -1,6 +1,6 @@
 # Funktion die die Mac Adresse einer HMI ausliest
 
-from utils import MAC, IP
+#from utils import MAC, IP
 
 
 def get_mac(HMI_ADDR):

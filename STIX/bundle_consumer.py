@@ -1,4 +1,3 @@
-from stix2 import *
 from bundle_creator import bundle
 import re
 
