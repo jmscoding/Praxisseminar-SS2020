@@ -1,13 +1,13 @@
 
 import socket
 from general import *
-from networking.ethernet import Ethernet
-from networking.ipv4 import IPv4
-from networking.icmp import ICMP
-from networking.tcp import TCP
-from networking.udp import UDP
-from networking.pcap import Pcap
-from networking.http import HTTP
+from ethernet import Ethernet
+from ipv4 import IPv4
+from icmp import ICMP
+from tcp import TCP
+from udp import UDP
+from pcap import Pcap
+from http import HTTP
 
 TAB_1 = '\t - '
 TAB_2 = '\t\t - '
