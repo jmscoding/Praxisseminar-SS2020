@@ -12,7 +12,7 @@
 
 from minicps.utils import *
 
-#Eigenen Logger basteln der mir die Daten persistent speichert, sodass ich sie danach auslesen kann
+#Eigener Logger
 
 Praxisseminar_test_logger = logging.getLogger(__name__)
 Praxisseminar_test_logger.setLevel(logging.DEBUG)
@@ -68,7 +68,7 @@ MAC = {
 
 # others
 PLC1_DATA = {
-    'SENSOR': '0.0',  # Verknuepfung mit HMI
+    'SENSOR': '0.0',
     'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 
@@ -91,13 +91,12 @@ PLC1_PROTOCOL = {
 }
 
 
-
 HMI_ADDR = IP['host1']
 
 HMI_MAC = MAC['host1']
 
 HMI_DATA = {
-    'SENSOR': '0.0',  # Verknuepfung mit PLC1
+    'SENSOR': '0.0',
     'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 

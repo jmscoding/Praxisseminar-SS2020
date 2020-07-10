@@ -10,152 +10,123 @@ from minicps.devices import HMI
 from utils import Praxisseminar_test_logger
 from utils import STATE, PLC1_ADDR
 
-from utils import HMI_PROTOCOL, HMI_DATA
+from utils import HMI_PROTOCOL, HMI_DATA, HMI_ADDR
 
 
-#import get_ip
-#import get_mac
-
-#import sys
 import time
 
-'''
-Versuch zur Laufzeit die IP und die MAC zu generieren
 
-HMI_ADDR = get_ip.get_ip()
-
-HMI_MAC = get_mac.get_mac(HMI_ADDR)
-
-HMI_SERVER = {
-    'address': HMI_ADDR,
-    'tags': HMI_TAGS
-}
-HMI_PROTOCOL = {
-    'name': 'enip',
-    'mode': 1,
-    'server': HMI_SERVER
-}
-'''
-
-# constant tag addresses
-# senden an PLC1
-# SENSOR_1 = ('SENSOR', 2)
-# MOTOR_1 = ('MOTOR', 2)
-# lesen von PLC1
 MOTOR = ('MOTOR', 1)
 SENSOR = ('SENSOR', 1)
+
 
 class PHMI(HMI):
 
     """Praxisseminar HMI.
 
-    HMI provides:
-        - state APIs: e.g., get a water level indicator
-        - network APIs: e.g., monitors a PLC's tag
+    HMI:
+        - Man kann die Daten des Motors von der PLC ablesen
+        - Man kann die PLC bedienen
     """
-
 
     def main_loop(self, sleep=10):
         """HMI main loop.
-
-
         """
 
-        # die HMI Addresse zurueckgeben
-        #print 'DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR + ' ' + str(HMI_MAC)
-        #Praxisseminar_test_logger.debug('DEBUG: die Adresse des aktuellen HMI lautet: ' + HMI_ADDR + ' ' + str(HMI_MAC))
-
         while(True):
-            '''
-            Urspruenglicher Plan
-            
-            rec_s11 = self.receive(SENSOR, PLC1_ADDR)
-            print 'DEBUG: SENSOR ' + rec_s11
-            self.send(SENSOR_1, rec_s11, HMI_ADDR)
-            rec_m11 = self.receive(MOTOR, PLC1_ADDR)
-            print 'DEBUG: MOTOR ' + rec_m11
-            self.send(MOTOR_1, rec_m11, HMI_ADDR)
-            Praxisseminar_test_logger.debug('Sensor_1: ' + rec_s11)
-            Praxisseminar_test_logger.debug('Motor_1: ' + rec_m11)
-            '''
-
-
+            Praxisseminar_test_logger.debug("Die HMI mit Adresse " + str(HMI_ADDR) + " befindet sich in der main loop")
             print "Sie haben folgende Optionen: "
             print
+
             eingabe = int(raw_input("Auslesen Status: Taste 1/ Geschwindigkeit einstellen: Taste 2/ Ein-/Ausschalten: Taste 3/ Programm beenden: Taste 99 "))
             print 'DEBUG: eingabe = %s' % eingabe
-            # evtl doch auf switch ... case umsteigen - geht nicht so wie ich mir das vorstelle
+            Praxisseminar_test_logger.debug("Der User hat folgendes eingegeben: %s" % str(eingabe))
 
             # Status abfragen
             if eingabe == 1:
+                Praxisseminar_test_logger.debug("User befindet sich in der ersten if-Abfrage")
                 motor = self.receive(MOTOR, PLC1_ADDR)
                 print "DEBUG plc1 erhaelt motor: " + motor
-                Praxisseminar_test_logger.debug('Motor: ' + motor)
-
-                # wenn mit eigenem Status-Bereich gearbeitet wird
-
+                Praxisseminar_test_logger.info('Motor erhaelt von PLC1_ADDR: ' + motor)
 
                 if motor == '1':
                     print 'DEBUG plc1 motor: An'
+                    Praxisseminar_test_logger.info("Der Motor ist An")
                 elif motor == '0':
                     print 'DEBUG plc1 motor: Aus'
+                    Praxisseminar_test_logger.info("Der Motor ist Aus")
 
-
-            #Geschwindigkeit einstellen
+            # Geschwindigkeit einstellen
             elif eingabe == 2:
+                Praxisseminar_test_logger.debug("User befindet sich in der zweiten if-Abfrage")
                 motor = self.receive(MOTOR, PLC1_ADDR)
                 print "DEBUG plc1 erhaelt motor: " + motor
-                Praxisseminar_test_logger.debug('Motor: ' + motor)
+                Praxisseminar_test_logger.info('Motor erhaelt von PLC1_ADDR: ' + motor)
 
                 # siehe Eingabe '1'
 
                 if motor == '1':
+                    Praxisseminar_test_logger.info("Der Motor ist an")
                     sensor = self.receive(SENSOR, PLC1_ADDR)
                     print 'DEBUG plc1 motor: An mit der Geschwindigkeit' + sensor
-                    Praxisseminar_test_logger.debug('Sensor: ' + sensor)
+                    Praxisseminar_test_logger.info('Sensor erhaelt von PLC1_ADDR: ' + sensor)
 
                     # Wollen Sie die Geschwindigkeit veraendern? Wie hoch soll die Geschwindigkeit sein (Rahmen der Geschwindigkeit anpassen)
                     change = raw_input("Wollen Sie die Geschwindigkeit veraendern? J/N")
+                    Praxisseminar_test_logger.debug("Der User hat folgendes eingegeben: %s" % change)
 
                     if change == "J" or change == "j":
                         new_vel = float(raw_input("Geben Sie die neue Geschwindigkeit ein: "))
+                        Praxisseminar_test_logger.debug("Der User hat folgendes eingegeben: %s" % str(new_vel))
                         self.send(SENSOR, new_vel, PLC1_ADDR)
                         print 'DEBUG plc1 motor: An mit neuer Geschwindigkeit' + str(new_vel)
-                        Praxisseminar_test_logger.debug('Sensor: ' + str(new_vel))
+                        Praxisseminar_test_logger.info('HMI sendet folgende SENSOR-Daten an PLC1_ADDR: ' + str(new_vel))
 
                     elif change == "N" or change == "n":
+                        Praxisseminar_test_logger.debug("Elif-Abfrage wurde erreicht weil User ein N/n eingegeben hat")
                         continue
 
                 elif motor == '0':
                     print 'DEBUG plc1 motor: Aus'
+                    Praxisseminar_test_logger.info("Der Motor ist aus")
                 print
-                Praxisseminar_test_logger.debug('Motor: ' + str(motor))
 
-            #Ein oder ausschalten
+            # Ein oder ausschalten
             elif eingabe == 3:
+                Praxisseminar_test_logger.debug("User befindet sich in der dritten if-Abfrage")
                 motor = self.receive(MOTOR, PLC1_ADDR)
                 print "DEBUG plc1 erhaelt motor: " + motor
-                Praxisseminar_test_logger.debug('Motor: ' + motor)
+                Praxisseminar_test_logger.debug('Motor erhaelt von PLC1_ADDR: ' + motor)
 
                 if motor == '1':
-                    onoff = int(raw_input("Wollen Sie den Motor aus oder einschalten? Aus = 0 /Ein = 1"))
+                    Praxisseminar_test_logger.info("Der Motor ist an")
+                    onoff = int(raw_input("Wollen Sie den Motor auschalten? Bitte geben Sie 0 ein ansonsten 1"))
+                    Praxisseminar_test_logger.debug("Der User hat folgendes eingegeben: %s" % str(onoff))
 
                     if onoff == 0:
                         self.send(MOTOR, onoff, PLC1_ADDR)
+                        Praxisseminar_test_logger.info('HMI sendet folgende MOTOR-Daten an PLC1_ADDR: ' + str(onoff))
                         self.send(SENSOR, 0.0, PLC1_ADDR)
+                        Praxisseminar_test_logger.info('HMI sendet folgende SENSOR-Daten an PLC1_ADDR: ' + str(0.0))
+                        Praxisseminar_test_logger.debug('Da der Motor ausgeschaltet wurde wird die Geschwindigkeit des Foerderbandes auf 0.0 zurueckgesetzt')
+
 
                     elif onoff == 1:
                         self.send(MOTOR, onoff, PLC1_ADDR)
-
+                        Praxisseminar_test_logger.info('HMI sendet folgende MOTOR-Daten an PLC1_ADDR: ' + str(onoff))
 
                 elif motor == '0':
-                    onoff = int(raw_input("Wollen Sie den Motor aus oder einschalten? Aus = 0 /Ein = 1"))
+                    Praxisseminar_test_logger.info("Der Motor ist aus")
+                    onoff = int(raw_input("Wollen Sie den Motor einschalten? Bitte geben Sie 1 ein ansonsten 0"))
+                    Praxisseminar_test_logger.debug("Der User hat folgendes eingegeben: %s" % str(onoff))
 
                     if onoff == 0:
                         self.send(MOTOR, onoff, PLC1_ADDR)
+                        Praxisseminar_test_logger.info('HMI sendet folgende MOTOR-Daten an PLC1_ADDR: ' + str(onoff))
 
                     elif onoff == 1:
                         self.send(MOTOR, onoff, PLC1_ADDR)
+                        Praxisseminar_test_logger.info('HMI sendet folgende MOTOR-Daten an PLC1_ADDR: ' + str(onoff))
 
 
             elif eingabe == 99:

@@ -8,8 +8,6 @@ from utils import PLC1_PROTOCOL, PLC1_ADDR
 from utils import Praxisseminar_test_logger
 from utils import MOTOR_VEL
 
-
-
 import time
 
 
@@ -30,31 +28,28 @@ class CbPLC1(PLC):
         print 'DEBUG: Praxisseminar plc1 enters main_loop'
         print
 
-        count = 0
-        END = 1000
-        while(True):
-
-            # Lese von HMI - vorher abpruefen ob HMI vorhanden
-
+        while True:
 
             rec_m11 = int(self.receive(MOTOR, PLC1_ADDR))
+            Praxisseminar_test_logger.info("Motor erhaelt von PLC1_ADDR: %s" % str(rec_m11))
             self.send(MOTOR, rec_m11, PLC1_ADDR)
+            Praxisseminar_test_logger.info("Motor sendet an PLC1_ADDR: %s" % str(rec_m11))
 
             print 'DEBUG: Sende %s an PLC1' % str(rec_m11)
 
             rec_s11 = float(self.receive(SENSOR, PLC1_ADDR))
+            Praxisseminar_test_logger.info("Sensor erhaelt von PLC1_ADDR: %s" % str(rec_s11))
             self.send(SENSOR, rec_s11, PLC1_ADDR)
+            Praxisseminar_test_logger.info("Sensor sendet an PLC1_ADDR: %s" % str(rec_s11))
 
             print 'DEBUG: Sende %s an PLC1' % str(rec_s11)
 
             time.sleep(sleep)
-            count += 1
 
             # Programmabbruch bei zu hoher Geschwindigkeit
-
-            if (count > END) or (rec_s11 > MOTOR_VEL['MAX']):
+            if (rec_s11 > MOTOR_VEL['MAX']):
                 print 'DEBUG Praxisseminar plc1 shutdown'
-                Praxisseminar_test_logger.debug('PLC1 shutdown ')
+                Praxisseminar_test_logger.warning('PLC1 shutdown, die Geschwindigkeit hat das Maximum ueberschritten ')
                 break
 
 
