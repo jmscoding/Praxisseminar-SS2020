@@ -26,11 +26,11 @@ class PHMI(HMI):
 
     HMI:
         - Man kann die Daten des Motors von der PLC ablesen
-        - Man kann die PLC bedienen
+        - Man kann die PLC bedienen (ein-/ausschalten + Geschwindigkeit veraendern)
     """
 
     def main_loop(self, sleep=10):
-        """HMI main loop.
+        """HMI main
         """
 
         while(True):

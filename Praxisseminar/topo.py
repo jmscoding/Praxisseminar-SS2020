@@ -1,7 +1,5 @@
 """
-IN BEARBEITUNG
-
-Praxisseminar conveyor belt (short CB, Fliessband) topology
+Praxisseminar conveyor belt (short CB, Foerderband) topology
 """
 
 from mininet.topo import Topo
@@ -13,7 +11,7 @@ from utils import Praxisseminar_test_logger
 
 class CbTopo(Topo):
 
-    """Fliessband 1 plc + 1 Host mit HMI + 1 Angreifer + 1 Switch"""
+    """Foerderband 1 plc + 1 Host mit HMI + 1 Angreifer + 1 Switch"""
 
     def build(self):
 

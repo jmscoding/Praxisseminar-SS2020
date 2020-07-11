@@ -1,18 +1,11 @@
 """
-
-
-	Praxisseminar utils.py
-
-	sqlite and enip use name (string) and pid (int) has key and the state stores
-	values as strings.
-	
-	sqlite uses float keyword and cpppo use REAL keyword.
-	if ACTUATORX is 1 then is ON otherwise is OFF.
+    Praxisseminar utils.py
 """
+
 
 from minicps.utils import *
 
-#Eigener Logger
+# Eigener Logger
 
 Praxisseminar_test_logger = logging.getLogger(__name__)
 Praxisseminar_test_logger.setLevel(logging.DEBUG)
@@ -36,7 +29,7 @@ Praxisseminar_logger = build_debug_logger(
     suffix='.log')
 
 # Control logic threshold
-MOTOR_VEL = { #Geschwindigkeitseinstellungen + Quelle Andi
+MOTOR_VEL = {# Geschwindigkeitseinstellungen
     'STD': 3.0,
     'MIN': 0.0,
     'MAX': 9.0
@@ -46,10 +39,6 @@ MOTOR_VEL = { #Geschwindigkeitseinstellungen + Quelle Andi
 # topo {{{1
 IP = {
     'plc1': '10.0.0.10',
-    'plc2': '10.0.0.20',
-    'plc3': '10.0.0.30',
-    'plc4': '10.0.0.40',
-    'plc5': '10.0.0.50',
     'host1': '10.0.0.60',
     'attacker': '10.0.0.77',
 }
@@ -58,21 +47,17 @@ NETMASK = '/24'
 
 MAC = {
     'plc1': '00:00:00:00:00:01',
-    'plc2': '00:00:00:00:00:06',
-    'plc3': '00:00:00:00:00:02',
-    'plc4': '00:00:00:00:00:0C',
-    'plc5': '00:00:00:00:00:0F',
     'host1': '00:00:00:00:00:0D',
     'attacker': 'AA:AA:AA:AA:AA:AA',
 }
 
-# others
+# Anfangsdaten
 PLC1_DATA = {
     'SENSOR': '0.0',
     'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 
-# protocol
+# Protokoll
 PLC1_MAC = MAC['plc1']
 PLC1_TAGS = (
     ('SENSOR', 1, 'REAL'),
@@ -95,13 +80,13 @@ HMI_ADDR = IP['host1']
 
 HMI_MAC = MAC['host1']
 
+# Anfangsdaten
 HMI_DATA = {
     'SENSOR': '0.0',
     'MOTOR': '0',   # 0 means OFF and 1 means ON
 }
 
-# protocol
-
+# Protokoll
 HMI_TAGS = (
     ('SENSOR', 1, 'REAL'),
     ('MOTOR', 1, 'INT'),
@@ -118,8 +103,7 @@ HMI_PROTOCOL = {
 }
 
 
-
-# state
+# Datenbank
 PATH = 'cb_db.sqlite'
 NAME = 'cb_table'
 
@@ -137,7 +121,6 @@ SCHEMA = """
 		PRIMARY KEY (name, pid)
 );"""
 
-# Sensor + Actuator initialisieren der Daten
 
 SCHEMA_INIT = """
     INSERT INTO cb_table VALUES ('SENSOR', 'float', '0.0', 1);
