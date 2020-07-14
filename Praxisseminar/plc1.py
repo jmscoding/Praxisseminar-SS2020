@@ -39,11 +39,6 @@ class CbPLC1(PLC):
             self.send(MOTOR, rec_m11, PLC1_ADDR)
             Praxisseminar_test_logger.info("Motor sendet an PLC1_ADDR: %s" % str(rec_m11))
 
-
-            sensor = self.get(SENSOR)
-            self.send(SENSOR, sensor, PLC1_ADDR)
-            Praxisseminar_test_logger.info("Sensor: %s" % str(sensor))
-
             rec_s11 = float(self.receive(SENSOR, PLC1_ADDR))
             # Programmabbruch bei zu hoher Geschwindigkeit
 
@@ -56,7 +51,7 @@ class CbPLC1(PLC):
                 break
             else:
 
-                if rec_s11 == '0.0' and rec_m11 == '1':
+                if '0.0' in str(rec_s11) and str(rec_m11) == '1':
                     self.set(SENSOR, MOTOR_VEL['STD'])
                     self.send(SENSOR, MOTOR_VEL['STD'], PLC1_ADDR)
                 else:
