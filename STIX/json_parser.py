@@ -55,7 +55,20 @@ for d in data:
 # Funktion dafür besser
 End_list = parseCon(liste)
 
+print(len(liste))
 print(End_list)
+
+# Daten in eine Text-Datei schreiben, wie viele Pakete gab es insgesamt, 
+file = open('test.txt', 'w')
+
+file.write('Gesamtanzahl Pakete: ' + str(len(liste)))
+file.write(str('\n'))
+
+for l in End_list:
+    file.write(str(l))
+    file.write(str('\n'))
+file.close()
+
 
 
 """

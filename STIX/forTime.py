@@ -1,4 +1,3 @@
-import time
 
 
 def getMon(mon):

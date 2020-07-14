@@ -65,7 +65,7 @@ def parseCon(list):
 
     def getCon():
         for i in range(0, length):
-            counter = getCount(list_Con[i][3], list_Con[i][2], list)
+            counter = getCount(list_Con[i][1], list_Con[i][3], list_Con[i][2], list)
             list_Con[i].append(counter)
         return list_Con
 
