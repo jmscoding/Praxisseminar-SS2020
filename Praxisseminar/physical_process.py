@@ -52,7 +52,7 @@ class ConveyorBelt(Tank):
 
                 new_velocity = self.get(SENSOR)
                 Praxisseminar_test_logger.info('Sensor: ' + str(new_velocity))
-                if int(new_velocity) == 0:
+                if new_velocity == '0.0':
                     new_velocity = MOTOR_VEL['STD']
                     self.set(SENSOR, new_velocity)
                     Praxisseminar_test_logger.info('Sensordaten wurden veraendert: ' + str(new_velocity))
