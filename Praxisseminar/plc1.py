@@ -55,8 +55,13 @@ class CbPLC1(PLC):
                 self.set(MOTOR, 0.0)
                 break
             else:
-                self.set(SENSOR, rec_s11)
-                self.send(SENSOR, rec_s11, PLC1_ADDR)
+
+                if rec_s11 == '0.0' and rec_m11 == '1':
+                    self.set(SENSOR, MOTOR_VEL['STD'])
+                    self.send(SENSOR, MOTOR_VEL['STD'], PLC1_ADDR)
+                else:
+                    self.set(SENSOR, rec_s11)
+                    self.send(SENSOR, rec_s11, PLC1_ADDR)
 
             time.sleep(sleep)
 
