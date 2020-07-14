@@ -53,11 +53,13 @@ class CbPLC1(PLC):
                 self.set(MOTOR, 0.0)
                 break
 
-            self.set(SENSOR, rec_s11)
+
             Praxisseminar_test_logger.info("Motor erhaelt von PLC1_ADDR: %s" % str(rec_m11))
             Praxisseminar_test_logger.info("Sensor erhaelt von PLC1_ADDR: %s" % str(rec_s11))
             self.send(SENSOR, rec_s11, PLC1_ADDR)
             Praxisseminar_test_logger.info("Sensor sendet an PLC1_ADDR: %s" % str(rec_s11))
+            self.set(SENSOR, rec_s11)
+            Praxisseminar_test_logger.info("Sensor setzt : %s" % str(rec_s11))
 
             print 'DEBUG: Sende %s an PLC1' % str(rec_s11)
 
