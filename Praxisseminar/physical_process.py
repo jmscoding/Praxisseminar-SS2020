@@ -11,7 +11,7 @@ Fliessband physical process
 from minicps.devices import Tank
 
 #from utils import MOTOR_VEL
-from utils import STATE
+from utils import STATE, MOTOR_VEL, Praxisseminar_test_logger
 
 import sys
 import time
@@ -24,7 +24,7 @@ SENSOR = ('SENSOR', 1)
 # Praxisseminar TAGS
 
 
-# TODO:
+# Doch Klasse Tank verwendet da eigene Klasse nicht in Python Pfad hinterlegt ist
 class ConveyorBelt(Tank):
 
     def pre_loop(self, sleep=0.1):
@@ -32,38 +32,45 @@ class ConveyorBelt(Tank):
         # Praxisseminar STATE INIT(
 
         # Standardmaessig ist der Motor des Foerderbandes an
-        self.set(MOTOR, 0)
+        get_m11 = self.get(MOTOR)
+        Praxisseminar_test_logger.info('Motor: ' + str(get_m11))
 
         # Praxisseminar STATE INIT)
 
     def main_loop(self, sleep=0.1):
 
         count = 0
-        while(count == 1000):
+        while True:
 
             # ueberpruefe ob Motor an ist
             # wenn ja dann setze standarmaessig Anfangsgeschwindigkeit
 
             motor = self.get(MOTOR)
+            Praxisseminar_test_logger.info('Motor: ' + str(motor))
 
             if int(motor) == 1:
 
                 new_velocity = self.get(SENSOR)
-                self.set(SENSOR, new_velocity)
-
+                Praxisseminar_test_logger.info('Sensor: ' + str(new_velocity))
+                if int(new_velocity) == 0:
+                    new_velocity = MOTOR_VEL['STD']
+                    self.set(SENSOR, new_velocity)
+                    Praxisseminar_test_logger.info('Sensordaten wurden veraendert: ' + str(new_velocity))
+                else:
+                    self.set(SENSOR, new_velocity)
+                    Praxisseminar_test_logger.info('Sensordaten wurden veraendert: ' + str(new_velocity))
 
             # DEBUG 'Standarmaessige Motorgeschwindigkeit
             else:
-                self.set(SENSOR, 0.0)
-
+                self.set(SENSOR, MOTOR_VEL['MIN'])
+                Praxisseminar_test_logger.info('Sensordaten wurden veraendert: ' + str(MOTOR_VEL['MIN']))
 
             time.sleep(sleep)
             count += 1
 
 
-
 if __name__ == '__main__':
-
+# section, level, protocol???
     cb = ConveyorBelt(
         name='cb',
         state=STATE,

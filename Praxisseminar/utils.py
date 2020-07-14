@@ -35,7 +35,6 @@ MOTOR_VEL = {# Geschwindigkeitseinstellungen
     'MAX': 9.0
 }
 
-
 # topo {{{1
 IP = {
     'plc1': '10.0.0.10',
@@ -74,7 +73,6 @@ PLC1_PROTOCOL = {
     'mode': 1,
     'server': PLC1_SERVER
 }
-
 
 HMI_ADDR = IP['host1']
 
