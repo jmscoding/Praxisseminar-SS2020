@@ -70,6 +70,9 @@ for l in End_list:
 file.close()
 
 
+def getTime():
+    return liste[0][0]
+
 
 """
 for element in liste:
