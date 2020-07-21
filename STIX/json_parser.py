@@ -20,7 +20,7 @@ i = 0
 # file 2: 'C:/Users/Johan/OneDrive/Desktop/Wirtschaftsinformatik/2. Semester/05 Praxisseminar/STIX/angriff_MITM.json'
 
 # Lese ein JSON File
-with open("C:/Users/Johan/OneDrive/Desktop/Wirtschaftsinformatik/2. Semester/05 Praxisseminar/STIX/angriff_MITM.json", "r") as f:
+with open("C:/Users/Johan/OneDrive/Desktop/Wirtschaftsinformatik/2. Semester/05 Praxisseminar/Praxisseminar-SS2020/STIX/DOS.json", "r") as f:
     data = json.load(f)
 
 for d in data:
