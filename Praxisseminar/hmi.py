@@ -33,7 +33,7 @@ class PHMI(HMI):
         """HMI main
         """
 
-        while(True):
+        while True:
             Praxisseminar_test_logger.debug("Die HMI mit Adresse " + str(HMI_ADDR) + " befindet sich in der main loop")
             print "Sie haben folgende Optionen: "
             print
