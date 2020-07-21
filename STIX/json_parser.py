@@ -74,6 +74,9 @@ def getTime():
     return liste[0][0]
 
 
+def getCon():
+    return End_list
+
 """
 for element in liste:
 

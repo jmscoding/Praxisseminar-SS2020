@@ -3,7 +3,7 @@
 from stix2.v21 import (ThreatActor, Identity, Relationship, Bundle, AttackPattern, ExternalReference, Infrastructure, Tool, Vulnerability, IPv4Address, MACAddress, NetworkTraffic)
 from json_parser import getCon, getTime
 import uuid
-
+import json
 
 # Bekommt den ersten Zeitstempel aus dem JSON-File
 time = getTime()
@@ -22,8 +22,7 @@ threat_actor = ThreatActor(
     goals=["Informationen ueber den Netzwerkverkehr im Unternehmen gewinnen", "Daten manipulieren"],
     sophistication="expert",
     resource_level="organization",
-    primary_motivation="personal-gain",
-    secondary_motivation=["dominance"]
+    primary_motivation="personal-gain"
 )
 
 infrastructure1 = Infrastructure(
@@ -89,7 +88,6 @@ tool1 = Tool(
     type="tool",
     id="tool--" + str(uuid.uuid4()),
     created=time,
-    modfied=time,
     name="Ettercap",
     description="Ermöglicht einem Angreifer ARP-Poisoning"
 )
@@ -98,7 +96,6 @@ tool2 = Tool(
     type="tool",
     id="tool--" + str(uuid.uuid4()),
     created=time,
-    modified=time,
     name="Wireshark",
     description="Ermöglicht dem Angreifer das Aufzeichnen von Netzwerkverkehr"
 )
@@ -107,7 +104,6 @@ tool3 = Tool(
     type="tool",
     id="tool--" + str(uuid.uuid4()),
     created=time,
-    modified=time,
     name="hping3",
     description="Programm, dass mittels IP-Spoofing und einer DOS-Attacke den Netzwerkverkehr eines Hosts stört"
 )
@@ -116,7 +112,6 @@ tool4 = Tool(
     type="tool",
     id="tool--" + str(uuid.uuid4()),
     created=time,
-    modified=time,
     name="HMI",
     description="Programm, dass den Status eines physischen Vorgangs lesen und verändern kann"
 )
@@ -160,6 +155,17 @@ relationship1 = Relationship(threat_actor, 'attributed-to', identity1)
 relationship2 = Relationship(threat_actor, 'attributed-to', identity2)
 relationship3 = Relationship(threat_actor, 'uses', attack_pattern1)
 relationship4 = Relationship(threat_actor, 'uses', attack_pattern2)
+relationship5 = Relationship(threat_actor, 'uses', infrastructure1)
+relationship6 = Relationship(attack_pattern1, 'uses', tool1)
+relationship7 = Relationship(attack_pattern2, 'uses', tool3)
+relationship8 = Relationship(infrastructure1, 'hosts', tool4)
+relationship9 = Relationship(identity2, 'related-to', infrastructure1)
+relationship10 = Relationship(threat_actor, 'uses', tool2)
 
 # Das Bundle
-bundle = Bundle(objects=[attack_pattern1, attack_pattern2, threat_actor, identity1, identity2, infrastructure1, relationship1, relationship2, relationship3, tool1, tool2, ])
+bundle = Bundle(objects=[attack_pattern1, attack_pattern2, threat_actor, identity1, identity2, infrastructure1, relationship1, relationship2, relationship3, tool1, tool2, tool3, tool4, relationship4, relationship5, relationship6, relationship7, relationship8, relationship9, relationship10])
+
+file = open('bundle.json', 'w')
+file.write(str(bundle))
+file.close()
+
