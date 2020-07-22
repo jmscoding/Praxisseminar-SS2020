@@ -1,0 +1,226 @@
+{
+    "type": "bundle",
+    "id": "bundle--0d08b480-c94a-4a8f-978f-637b60b4326c",
+    "objects": [
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--1c914568-3b9a-492f-86c5-ef394def6839",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T17:23:20.195Z",
+            "name": "Man in the Middle Attack",
+            "external_references": [
+                {
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/94.html",
+                    "external_id": "CAPEC-94"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--435eadd6-ab60-4034-93ef-2a3a50769c03",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T17:23:20.195Z",
+            "name": "DOS-Attack",
+            "external_references": [
+                {
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/343.html",
+                    "external_id": "CAPEC-343"
+                }
+            ]
+        },
+        {
+            "type": "threat-actor",
+            "spec_version": "2.1",
+            "id": "threat-actor--1d9986b7-63a3-47db-bfea-2a3def1068b1",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T17:23:20.195Z",
+            "name": "Innentaeter",
+            "description": "Ein Innentaeter versucht den aktiven Prozess mitzuhoeren, Informationen zu gewinnen und Daten zu manipulieren.",
+            "threat_actor_types": [
+                "insider-disgruntled"
+            ],
+            "aliases": [
+                "Verraeter"
+            ],
+            "roles": [
+                "agent"
+            ],
+            "goals": [
+                "Informationen ueber den Netzwerkverkehr im Unternehmen gewinnen",
+                "Daten manipulieren"
+            ],
+            "sophistication": "expert",
+            "resource_level": "organization",
+            "primary_motivation": "personal-gain"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--35968baa-e4d5-4bbe-a3e5-6c10109a8f4a",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T17:23:20.195Z",
+            "name": "Firma B",
+            "description": "Firma B versucht Innentaeter anzuwerben und dadurch der Konkurrenz zu schaden.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--513ba472-c28c-496e-9599-d7f086d35299",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T17:23:20.195Z",
+            "name": "Firma A",
+            "description": "Firma A ist die angegriffene Firma.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "infrastructure",
+            "spec_version": "2.1",
+            "id": "infrastructure--c2ed5839-6e11-40ee-9620-83e17becbc59",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T17:23:20.195Z",
+            "name": "Netzwerk - Firma A",
+            "description": "Das Netzwerk der Firma A, welches aus mehreren Teilnehmern besteht"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--19c57d00-d18e-4187-821b-2c49188bce1b",
+            "created": "2020-07-21T19:53:51.14795Z",
+            "modified": "2020-07-21T19:53:51.14795Z",
+            "relationship_type": "attributed-to",
+            "source_ref": "threat-actor--1d9986b7-63a3-47db-bfea-2a3def1068b1",
+            "target_ref": "identity--35968baa-e4d5-4bbe-a3e5-6c10109a8f4a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--68f27fc8-21f2-4e7a-a7fb-84489bd115ba",
+            "created": "2020-07-21T19:53:51.14795Z",
+            "modified": "2020-07-21T19:53:51.14795Z",
+            "relationship_type": "attributed-to",
+            "source_ref": "threat-actor--1d9986b7-63a3-47db-bfea-2a3def1068b1",
+            "target_ref": "identity--513ba472-c28c-496e-9599-d7f086d35299"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ac6c067b-fc99-4833-9e13-771a4f1cf0d5",
+            "created": "2020-07-21T19:53:51.14895Z",
+            "modified": "2020-07-21T19:53:51.14895Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--1d9986b7-63a3-47db-bfea-2a3def1068b1",
+            "target_ref": "attack-pattern--1c914568-3b9a-492f-86c5-ef394def6839"
+        },
+        {
+            "type": "tool",
+            "spec_version": "2.1",
+            "id": "tool--fa02c7e5-ea9e-401b-81f4-7496c3d17b91",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T19:53:51.14795Z",
+            "name": "Ettercap",
+            "description": "Erm\u00f6glicht einem Angreifer ARP-Poisoning"
+        },
+        {
+            "type": "tool",
+            "spec_version": "2.1",
+            "id": "tool--966dd02c-085b-4bf6-b1c0-0535c3a8ad71",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T19:53:51.14795Z",
+            "name": "Wireshark",
+            "description": "Erm\u00f6glicht dem Angreifer das Aufzeichnen von Netzwerkverkehr"
+        },
+        {
+            "type": "tool",
+            "spec_version": "2.1",
+            "id": "tool--8026c2cc-4e13-456b-a808-3bba05ec0d1e",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T19:53:51.14795Z",
+            "name": "hping3",
+            "description": "Programm, dass mittels IP-Spoofing und einer DOS-Attacke den Netzwerkverkehr eines Hosts st\u00f6rt"
+        },
+        {
+            "type": "tool",
+            "spec_version": "2.1",
+            "id": "tool--538f4ca0-44b7-407b-b62a-f38507b0ff07",
+            "created": "2020-07-21T17:23:20.195Z",
+            "modified": "2020-07-21T19:53:51.14795Z",
+            "name": "HMI",
+            "description": "Programm, dass den Status eines physischen Vorgangs lesen und ver\u00e4ndern kann"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--36fc1e96-2e31-41a0-8e55-018de86d93ff",
+            "created": "2020-07-21T19:53:51.14895Z",
+            "modified": "2020-07-21T19:53:51.14895Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--1d9986b7-63a3-47db-bfea-2a3def1068b1",
+            "target_ref": "attack-pattern--435eadd6-ab60-4034-93ef-2a3a50769c03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0abfa717-d1d6-46b5-8192-80fee39eb6e5",
+            "created": "2020-07-21T19:53:51.14895Z",
+            "modified": "2020-07-21T19:53:51.14895Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--1d9986b7-63a3-47db-bfea-2a3def1068b1",
+            "target_ref": "infrastructure--c2ed5839-6e11-40ee-9620-83e17becbc59"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--36466168-1113-4f9d-8ad6-a3cacc45485a",
+            "created": "2020-07-21T19:53:51.14895Z",
+            "modified": "2020-07-21T19:53:51.14895Z",
+            "relationship_type": "uses",
+            "source_ref": "attack-pattern--1c914568-3b9a-492f-86c5-ef394def6839",
+            "target_ref": "tool--fa02c7e5-ea9e-401b-81f4-7496c3d17b91"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dd46d883-4794-4de4-bffb-137f1f78a572",
+            "created": "2020-07-21T19:53:51.14895Z",
+            "modified": "2020-07-21T19:53:51.14895Z",
+            "relationship_type": "uses",
+            "source_ref": "attack-pattern--435eadd6-ab60-4034-93ef-2a3a50769c03",
+            "target_ref": "tool--8026c2cc-4e13-456b-a808-3bba05ec0d1e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--609e753f-91e2-4ee9-a919-2677eb866777",
+            "created": "2020-07-21T19:53:51.14895Z",
+            "modified": "2020-07-21T19:53:51.14895Z",
+            "relationship_type": "hosts",
+            "source_ref": "infrastructure--c2ed5839-6e11-40ee-9620-83e17becbc59",
+            "target_ref": "tool--538f4ca0-44b7-407b-b62a-f38507b0ff07"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--71e61e17-0336-4a66-9db4-a4788902683b",
+            "created": "2020-07-21T19:53:51.14895Z",
+            "modified": "2020-07-21T19:53:51.14895Z",
+            "relationship_type": "related-to",
+            "source_ref": "identity--513ba472-c28c-496e-9599-d7f086d35299",
+            "target_ref": "infrastructure--c2ed5839-6e11-40ee-9620-83e17becbc59"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--67994d7a-f159-4c06-8db8-33269d6660d0",
+            "created": "2020-07-21T19:53:51.149949Z",
+            "modified": "2020-07-21T19:53:51.149949Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--1d9986b7-63a3-47db-bfea-2a3def1068b1",
+            "target_ref": "tool--966dd02c-085b-4bf6-b1c0-0535c3a8ad71"
+        }
+    ]
+}
